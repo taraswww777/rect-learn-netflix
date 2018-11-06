@@ -1,0 +1,21 @@
+@import '../../config';
+
+$blockName: 'netflix-search-results-item';
+
+.#{$blockName} {
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 10px;
+
+	&:hover {
+		cursor: pointer;
+		transition: 1s;
+		background: rgba(0, 0, 0, 0.5);
+	}
+	&__cover {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
