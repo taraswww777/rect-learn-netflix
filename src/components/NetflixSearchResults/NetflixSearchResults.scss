@@ -1,0 +1,17 @@
+@import '../../config';
+
+$blockName: 'netflix-search-results';
+
+.#{$blockName} {
+	width: 100%;
+
+	&__result-list {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__result-list-item {
+		width: (100% / 4);
+	}
+}
