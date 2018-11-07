@@ -1,5 +1,6 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
+import './NetflixSearchResultsItem.scss';
 
 class NetflixSearchResultsItem extends ComponentBEM {
 
