@@ -1,1 +1,30 @@
 $color-red: #e50914;
+$color-gray: #999;
+
+@mixin btn() {
+	color: #fff;
+	background: $color-gray;
+	border: 1px $color-gray solid;
+	transition: 0.5s;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	&:hover {
+		border-color: $color-red;
+		background-color: $color-red;
+		transition: 0.5s;
+	}
+
+	&--status {
+		&_active {
+			border-color: $color-red;
+			color: #fff;
+			background: $color-red;
+			&:hover {
+				background: $color-gray;
+				border-color: $color-gray;
+				color: #fff;
+			}
+		}
+	}
+}

@@ -4,15 +4,27 @@ import './NetflixSearchField.scss'
 
 class NetflixSearchField extends ComponentBEM {
 
-    componentName = 'netflix-search-field';
+	componentName = 'netflix-search-field';
 
-    render() {
-        return (
-            <div className={this.block()}>
-                <input type="text" className={this.elem('input')}/>
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div className={this.block()}>
+				<input
+					type="text"
+					className={this.elem('input')}
+					placeholder={'search...'}
+					onKeyPress={(event) => {
+						if (ComponentBEM.isKeyEnter(event)) {
+							this.props.setSearchQuery(event.target.value);
+							this.props.searchFilm();
+						}
+						return false;
+					}}
+
+				/>
+			</div>
+		);
+	}
 }
 
 export default NetflixSearchField;

@@ -27,7 +27,8 @@ body, html {
 		background: #fff;
 		width: 100%;
 		flex-grow: 1;
-
+		display: flex;
+		align-items: center;
 	}
 
 	&__footer {
@@ -91,8 +92,34 @@ body, html {
 		color: #ffffff;
 	}
 
-	&__search-by-selectors {
+	&__search-by-btn{
+		margin: 0 0 0 10px;
+	}
+
+	&__search-run{
+		flex-grow: 1;
+		display: flex;
+		flex-direction: row-reverse;
+	}
+
+	&__status-bar{
+		background: #ccc;
+		color: #000;
+		width: 100%;
+		font-weight: bold;
+		padding: 10px 0;
+	}
+
+	&__status-bar-found{
 		flex-grow: 1;
 	}
 
+	&__status-bar-sort{
+		min-width: 50%;
+		display: flex;
+	}
+
+	&__status-bar-sort-btn{
+		margin: 0 0 0 10px;
+	}
 }

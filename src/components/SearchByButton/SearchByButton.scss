@@ -1,0 +1,10 @@
+@import '../../config';
+
+$blockName: 'search-by-button';
+
+.#{$blockName} {
+	@include btn();
+
+	padding: 5px 10px;
+	font-size: 1rem;
+}

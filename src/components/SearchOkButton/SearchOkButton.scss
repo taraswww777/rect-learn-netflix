@@ -1,0 +1,11 @@
+@import '../../config';
+
+$blockName: 'search-ok-button';
+
+.#{$blockName} {
+	@include btn();
+
+	padding: 10px 20px;
+	font-size: 1.5rem;
+	font-weight: bold;
+}

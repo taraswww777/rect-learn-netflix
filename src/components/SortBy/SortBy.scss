@@ -1,0 +1,8 @@
+@import '../../config';
+
+$blockName: 'sort-by';
+
+.#{$blockName} {
+	@include btn();
+
+}

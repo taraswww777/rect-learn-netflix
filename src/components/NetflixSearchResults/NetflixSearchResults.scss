@@ -14,4 +14,9 @@ $blockName: 'netflix-search-results';
 	&__result-list-item {
 		width: (100% / 4);
 	}
+
+	&__result-empty{
+		text-align: center;
+		font-size: 3rem;
+	}
 }

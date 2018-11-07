@@ -2,33 +2,37 @@ import {Component} from 'react';
 
 class ComponentBEM extends Component {
 
-    componentName = 'ComponentCustom';
+	componentName = 'ComponentCustom';
 
-    block(mod = '', modValue = '') {
-        let className = this.componentName;
+	block(mod = '', modValue = '') {
+		let className = this.componentName;
 
-        if (mod !== '') {
-            className += ' ' + this.componentName + '--' + mod;
-            if (modValue !== '') {
-                className += '_' + modValue;
-            }
-        }
+		if (mod !== '') {
+			className += ' ' + this.componentName + '--' + mod;
+			if (modValue !== '') {
+				className += '_' + modValue;
+			}
+		}
 
-        return className;
-    }
+		return className;
+	}
 
-    elem(nameElement, mod = '', modValue = '') {
-        let className = this.componentName + '__' + nameElement;
+	elem(nameElement, mod = '', modValue = '') {
+		let className = this.componentName + '__' + nameElement;
 
-        if (mod !== '') {
-            className += ' ' + this.componentName + '__' + nameElement + '--' + mod;
-            if (modValue !== '') {
-                className += '_' + modValue;
-            }
-        }
-        return className;
+		if (mod !== '') {
+			className += ' ' + this.componentName + '__' + nameElement + '--' + mod;
+			if (modValue !== '') {
+				className += '_' + modValue;
+			}
+		}
+		return className;
 
-    }
+	}
+
+	static isKeyEnter(event) {
+		return event.key === 'Enter';
+	}
 
 }
 
