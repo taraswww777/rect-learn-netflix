@@ -43,7 +43,6 @@ class App extends ComponentBEM {
 		}
 
 		this.sortSearchResults();
-
 		this.setState(this.state);
 	}
 
@@ -51,7 +50,6 @@ class App extends ComponentBEM {
 		if (!this.state.searchResults) {
 			return;
 		}
-		console.log('this.state.sortBy: ', this.state.sortBy);
 
 		switch (this.state.sortBy) {
 			case'rating':
@@ -89,22 +87,19 @@ class App extends ComponentBEM {
 
 	filterByTitle(listFilms = []) {
 		let resultListSearch = [];
-		listFilms.map((film) => {
-			if (film.title.toLowerCase().indexOf(this.state.searchQuery) > -1) {
-				resultListSearch.push(film);
-			}
-		});
+
+		listFilms
+			.filter((film) => film.title.toLowerCase().indexOf(this.state.searchQuery) > -1)
+			.map((film) => resultListSearch.push(film));
 
 		return resultListSearch;
 	}
 
 	filterByGenre(listFilms = []) {
 		let resultListSearch = [];
-		listFilms.map((film) => {
-			if (film.genre.toLowerCase().indexOf(this.state.searchQuery) > -1) {
-				resultListSearch.push(film);
-			}
-		});
+		listFilms
+			.filter((film) => film.genre.toLowerCase().indexOf(this.state.searchQuery) > -1)
+			.map((film) => resultListSearch.push(film));
 
 		return resultListSearch;
 	}
