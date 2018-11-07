@@ -1,0 +1,8 @@
+@import '../../config';
+
+$blockName: 'error-boundary';
+
+.#{$blockName} {
+	background: #ffffff;
+	color: red;
+}
