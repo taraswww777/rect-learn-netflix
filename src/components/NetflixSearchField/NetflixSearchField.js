@@ -13,9 +13,11 @@ class NetflixSearchField extends ComponentBEM {
 					type="text"
 					className={this.elem('input')}
 					placeholder={'search...'}
+					onChange={(event) => {
+						this.props.setSearchQuery(event.target.value);
+					}}
 					onKeyPress={(event) => {
 						if (ComponentBEM.isKeyEnter(event)) {
-							this.props.setSearchQuery(event.target.value);
 							this.props.searchFilm();
 						}
 						return false;
