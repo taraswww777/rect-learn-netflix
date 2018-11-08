@@ -106,7 +106,6 @@ class App extends ComponentBEM {
 
 	filterByTitle(listFilms = []) {
 		let resultListSearch = [];
-		console.log('listFilms: ', listFilms);
 
 		listFilms
 			.filter((film) => film.title.toLowerCase().indexOf(this.props.state.searchQuery) > -1)

@@ -14,8 +14,19 @@ class Search extends ComponentBEM {
 	render() {
 		return (
 			<div className={this.block()}>
-				<SearchBar/>
-				<SearchResults/>
+
+				<div className={this.elem('sidebar')}>
+					<SearchBar/>
+				</div>
+
+				<div className={this.elem('container')}>
+					<div className={this.elem('row')}>
+						<div className={this.elem('col-12')}>
+							<SearchResults/>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		);
 	}

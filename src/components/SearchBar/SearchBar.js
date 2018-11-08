@@ -16,15 +16,15 @@ class SearchBar extends ComponentBEM {
 
 		return (
 			<aside className={this.block()}>
-				<div className={this.elem('status-bar')}>
-					<div className={this.elem('container')}>
-						<div className={this.elem('row')}>
+				<div className={this.elem('container')}>
+					<div className={this.elem('row')}>
 
 							<div className={this.elem('status-bar-found')}>
 								<ErrorBoundary>
 									<SearchFoundCount countResults={this.props.state.searchResults.length}/>
 								</ErrorBoundary>
 							</div>
+
 							<div className={this.elem('status-bar-sort')}>
 								<ErrorBoundary>
 									Sort by
@@ -46,7 +46,6 @@ class SearchBar extends ComponentBEM {
 								</ErrorBoundary>
 							</div>
 
-						</div>
 					</div>
 				</div>
 			</aside>

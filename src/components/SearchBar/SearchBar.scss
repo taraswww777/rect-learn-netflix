@@ -3,5 +3,27 @@
 $blockName: 'search-bar';
 
 .#{$blockName} {
+	@include grid-flex();
 
+	background: #444444;
+	line-height: 1;
+	padding: 10px 0;
+
+	&__status-bar-found {
+		@include col(5);
+
+		color: #cccccc;
+	}
+
+	&__status-bar-sort {
+		@include col(7);
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-end;
+		line-height: 1;
+	}
+
+	&__status-bar-sort-btn {
+		margin: 0 0 0 10px;
+	}
 }

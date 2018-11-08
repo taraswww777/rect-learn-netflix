@@ -29,6 +29,10 @@ $color-gray: #999;
 	}
 }
 
+@mixin col($i:12,$col-count:12) {
+	width: (100% * $i) /$col-count;
+}
+
 @mixin grid-flex($col-count: 12) {
 	width: 100%;
 
@@ -52,7 +56,7 @@ $color-gray: #999;
 
 	@for $i from 1 through $col-count {
 		&__col-#{$i} {
-			width: (100% * $i) /$col-count;
+			@include col($i, $col-count);
 		}
 	}
 }

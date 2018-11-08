@@ -22,11 +22,12 @@ class SearchResultsItem extends ComponentBEM {
 						src={this.props.film.img.src}
 						alt={this.props.film.title}
 						title={this.props.film.title}/>
-
+					<div className={this.elem('info')}>
 					<div className={this.elem('title')}>{this.props.film.title}</div>
-					<div className={this.elem('genre')}>{this.props.film.genre}</div>
 					<div className={this.elem('year')}>{this.props.film.year}</div>
-					<div className={this.elem('rating')}>{this.props.film.rating}</div>
+					<div className={this.elem('genre')}>{this.props.film.genre}</div>
+					{/*<div className={this.elem('rating')}>{this.props.film.rating}</div>*/}
+				</div>
 				</div>
 		)
 			;
