@@ -108,7 +108,7 @@ class App extends ComponentBEM {
 		let resultListSearch = [];
 
 		listFilms
-			.filter((film) => film.title.toLowerCase().indexOf(this.props.state.searchQuery) > -1)
+			.filter((film) => film.title.toLowerCase().indexOf(this.props.state.searchQuery.toLowerCase()) > -1)
 			.map((film) => resultListSearch.push(film));
 
 		return resultListSearch;
@@ -117,7 +117,7 @@ class App extends ComponentBEM {
 	filterByGenre(listFilms = []) {
 		let resultListSearch = [];
 		listFilms
-			.filter((film) => film.genre.toLowerCase().indexOf(this.props.state.searchQuery) > -1)
+			.filter((film) => film.genre.toLowerCase().indexOf(this.props.state.searchQuery.toLowerCase()) > -1)
 			.map((film) => resultListSearch.push(film));
 
 
