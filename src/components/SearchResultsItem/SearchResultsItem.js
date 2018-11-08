@@ -1,10 +1,10 @@
 import React from 'react';
-import './NetflixSearchResultsItem.scss';
+import './SearchResultsItem.scss';
 import ComponentBEM from '../ComponentBEM.js';
 
-class NetflixSearchResultsItem extends ComponentBEM {
+class SearchResultsItem extends ComponentBEM {
 
-	componentName = 'netflix-search-results-item';
+	componentName = 'search-results-item';
 
 	render() {
 		return (
@@ -33,4 +33,4 @@ class NetflixSearchResultsItem extends ComponentBEM {
 	}
 }
 
-export default NetflixSearchResultsItem;
+export default SearchResultsItem;

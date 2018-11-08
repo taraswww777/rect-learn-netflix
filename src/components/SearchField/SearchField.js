@@ -1,10 +1,10 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
-import './NetflixSearchField.scss'
+import './SearchField.scss'
 
-class NetflixSearchField extends ComponentBEM {
+class SearchField extends ComponentBEM {
 
-	componentName = 'netflix-search-field';
+	componentName = 'search-field';
 
 	render() {
 		return (
@@ -29,4 +29,4 @@ class NetflixSearchField extends ComponentBEM {
 	}
 }
 
-export default NetflixSearchField;
+export default SearchField;

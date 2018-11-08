@@ -1,72 +1,91 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ComponentBEM from './components/ComponentBEM';
 import './App.scss';
-import demoData from './demoData';
-
-import NetflixSearchField from './components/NetflixSearchField/NetflixSearchField';
-import SearchResults from "./components/NetflixSearchResults/NetflixSearchResults";
-import SortBy from "./components/SortBy/SortBy";
-import SearchFoundCount from "./components/SearchFoundCount/SearchFoundCount";
+import {mapStateToProps, mapStateToDispatchers} from './actions/reducer';
+import SearchField from './components/SearchField/SearchField';
 import SearchByButton from "./components/SearchByButton/SearchByButton";
 import SearchOkButton from "./components/SearchOkButton/SearchOkButton";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
+const stateDefault = {
+	listFilms: [],
+	searchQuery: null,
+	searchBy: 'title',
+	sortBy: 'date',
+	searchResults: []
+};
+
 class App extends ComponentBEM {
 	componentName = 'app';
 
-	state = {
-		listFilms: demoData.listFilms,
-		searchQuery: null,
-		searchBy: 'title',
-		sortBy: 'date',
-		searchResults: []
-	};
+
+	constructor(a, b) {
+		super(a, b);
+		this.props.load(stateDefault);
+		this.props.loadListFilms();
+		this.props.load({
+			onSearchFilm: this.searchFilm.bind(this),
+			onSetSortBy: this.setSortBy.bind(this)
+		});
+	}
 
 	searchFilm() {
-		if (!this.state.searchQuery
-			|| this.state.searchQuery.length <= 0
-			|| !this.state.listFilms) {
-			this.state.searchResults = [];
+
+		if (!this.props.state.searchQuery
+			|| this.props.state.searchQuery.length <= 0
+			|| !this.props.state.listFilms) {
+			this.props.state.searchResults = [];
 		} else {
 
-			switch (this.state.searchBy.toLowerCase()) {
+			switch (this.props.state.searchBy.toLowerCase()) {
 				case 'genre':
-					this.state.searchResults = this.filterByGenre(this.state.listFilms);
+					this.props.state.searchResults = this.filterByGenre(this.props.state.listFilms);
 					break;
 				case 'title':
-					this.state.searchResults = this.filterByTitle(this.state.listFilms);
+					this.props.state.searchResults = this.filterByTitle(this.props.state.listFilms);
 					break;
 				default:
-					this.state.searchResults = this.filterByTitle(this.state.listFilms);
+					this.props.state.searchResults = this.filterByTitle(this.props.state.listFilms);
 					break;
 			}
 		}
-
 		this.sortSearchResults();
-		this.setState(this.state);
+		this.freshProps();
 	}
 
+	setSortBy(sortBy = 'rating') {
+		return () => {
+			if (sortBy && sortBy.length > 0) {
+				this.props.state.sortBy = sortBy;
+			}
+
+			this.freshProps();
+			this.searchFilm();
+		}
+	}
+
+
 	sortSearchResults() {
-		if (!this.state.searchResults) {
+		if (!this.props.state.searchResults) {
 			return;
 		}
 
-		switch (this.state.sortBy) {
+		switch (this.props.state.sortBy) {
 			case'rating':
-				this.state.searchResults.sort(App.compareFilmRating);
+				this.props.state.searchResults.sort(App.compareFilmRating);
 				break;
 			case'date':
-				this.state.searchResults.sort(App.compareFilmDate);
+				this.props.state.searchResults.sort(App.compareFilmDate);
 				break;
 			case'title':
-				this.state.searchResults.sort(App.compareFilmTitle);
+				this.props.state.searchResults.sort(App.compareFilmTitle);
 				break;
 			default:
-				this.state.searchResults.sort(App.compareFilmRating);
+				this.props.state.searchResults.sort(App.compareFilmRating);
 				break;
 		}
 	}
-
 
 	static compareFilmRating(filmA, filmB) {
 		return filmA.rating - filmB.rating;
@@ -87,9 +106,10 @@ class App extends ComponentBEM {
 
 	filterByTitle(listFilms = []) {
 		let resultListSearch = [];
+		console.log('listFilms: ', listFilms);
 
 		listFilms
-			.filter((film) => film.title.toLowerCase().indexOf(this.state.searchQuery) > -1)
+			.filter((film) => film.title.toLowerCase().indexOf(this.props.state.searchQuery) > -1)
 			.map((film) => resultListSearch.push(film));
 
 		return resultListSearch;
@@ -98,38 +118,33 @@ class App extends ComponentBEM {
 	filterByGenre(listFilms = []) {
 		let resultListSearch = [];
 		listFilms
-			.filter((film) => film.genre.toLowerCase().indexOf(this.state.searchQuery) > -1)
+			.filter((film) => film.genre.toLowerCase().indexOf(this.props.state.searchQuery) > -1)
 			.map((film) => resultListSearch.push(film));
+
 
 		return resultListSearch;
 	}
 
-	setSortBy(sortBy = 'rating') {
-		return () => {
-			if (sortBy && sortBy.length > 0) {
-				this.state.sortBy = sortBy;
-			}
-
-			this.setState(this.state);
-
-			this.searchFilm();
-		}
-	}
 
 	setSearchBy(searchBy = 'title') {
 		return () => {
 			if (searchBy && searchBy.length > 0) {
-				this.state.searchBy = searchBy;
+				this.props.state.searchBy = searchBy;
 			}
 
-			this.setState(this.state);
+			this.freshProps();
 			this.searchFilm();
 		}
 	}
 
 	setSearchQuery(searchQuery) {
-		this.state.searchQuery = searchQuery;
-		this.setState(this.state);
+		this.props.state.searchQuery = searchQuery;
+		this.freshProps();
+	}
+
+	freshProps() {
+		this.setState(this.props.state);
+		this.props.load(this.props.state);
 	}
 
 
@@ -145,7 +160,7 @@ class App extends ComponentBEM {
 								<div className={this.elem('search-area-title')}>Find your movie</div>
 								<div className={this.elem('search-area-field')}>
 									<ErrorBoundary>
-										<NetflixSearchField
+										<SearchField
 											searchFilm={this.searchFilm.bind(this)}
 											setSearchQuery={this.setSearchQuery.bind(this)}/>
 									</ErrorBoundary>
@@ -158,14 +173,14 @@ class App extends ComponentBEM {
 									<div className={this.elem('search-by-btn')}>
 										<SearchByButton
 											searchByTitle={'title'}
-											searchByCurrent={this.state.searchBy}
+											searchByCurrent={this.props.state.searchBy}
 											searchByCode={'title'}
 											setSearchBy={this.setSearchBy.bind(this)}/>
 									</div>
 									<div className={this.elem('search-by-btn')}>
 										<SearchByButton
 											searchByTitle={'genre'}
-											searchByCurrent={this.state.searchBy}
+											searchByCurrent={this.props.state.searchBy}
 											searchByCode={'genre'}
 											setSearchBy={this.setSearchBy.bind(this)}/>
 									</div>
@@ -180,49 +195,12 @@ class App extends ComponentBEM {
 					</div>
 				</header>
 
-				<aside className={this.elem('status-bar')}>
-					<div className={this.elem('container')}>
-						<div className={this.elem('row')}>
+				<div className={this.elem('main')}>
+					<ErrorBoundary>
+						{this.props.children}
+					</ErrorBoundary>
+				</div>
 
-							<div className={this.elem('status-bar-found')}>
-								<ErrorBoundary>
-									<SearchFoundCount countResults={this.state.searchResults.length}/>
-								</ErrorBoundary>
-							</div>
-							<div className={this.elem('status-bar-sort')}>
-								<ErrorBoundary>
-									Sort by
-									<div className={this.elem('status-bar-sort-btn')}>
-										<SortBy
-											sortByTitle={'release date'}
-											sortByCode={'date'}
-											sortByCurrent={this.state.sortBy}
-											setSortBy={this.setSortBy.bind(this)}/>
-									</div>
-									<div className={this.elem('status-bar-sort-btn')}>
-										<SortBy
-											sortByTitle={'rating'}
-											sortByCode={'rating'}
-											sortByCurrent={this.state.sortBy}
-											setSortBy={this.setSortBy.bind(this)}/>
-									</div>
-
-								</ErrorBoundary>
-							</div>
-
-						</div>
-					</div>
-				</aside>
-
-				<main className={this.elem('main')}>
-					<div className={this.elem('container')}>
-						<div className={this.elem('row')}>
-							<ErrorBoundary>
-								<SearchResults listFilms={this.state.searchResults}/>
-							</ErrorBoundary>
-						</div>
-					</div>
-				</main>
 
 				<footer className={this.elem('footer')}>
 					<div className={this.elem('container')}>
@@ -236,4 +214,4 @@ class App extends ComponentBEM {
 	}
 }
 
-export default App;
+export default connect(mapStateToProps, mapStateToDispatchers)(App);
