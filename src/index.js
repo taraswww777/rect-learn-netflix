@@ -10,6 +10,7 @@ import reducer from './actions/reducer';
 import App from './App';
 import Search from "./components/Search/Search";
 import Exception404 from "./components/Exception404/Exception404";
+import FilmDetail from "./components/FilmDetail/FilmDetail";
 
 const store = createStore(reducer);
 
@@ -18,7 +19,8 @@ ReactDOM.render((
 		<Router>
 			<App>
 				<Switch>
-					<Route path='/' exact={true} component={Search} props={store}/>
+					<Route path='/' exact={true} component={Search}/>
+					<Route path='/film/:alias' exact={true} component={FilmDetail}/>
 					<Route path='*' component={Exception404}/>
 				</Switch>
 			</App>

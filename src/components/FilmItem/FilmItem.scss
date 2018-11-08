@@ -1,6 +1,6 @@
 @import '../../config';
 
-$blockName: 'search-results-item';
+$blockName: 'film-item';
 
 .#{$blockName} {
 
@@ -8,6 +8,8 @@ $blockName: 'search-results-item';
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 10px;
+	text-decoration: none;
+	color: #000;
 
 	&:hover {
 		cursor: pointer;

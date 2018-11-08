@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchResults.scss';
 import ComponentBEM from '../ComponentBEM.js';
-import SearchResultsItem from "../SearchResultsItem/SearchResultsItem";
+import FilmItem from "../FilmItem/FilmItem";
 import connect from "react-redux/es/connect/connect";
 import {mapStateToDispatchers, mapStateToProps} from "../../actions/reducer";
 
@@ -21,7 +21,7 @@ class SearchResults extends ComponentBEM {
 					<div className={this.elem('result-list')}>
 						{this.props.state.searchResults.map((film) =>
 							<div className={this.elem('result-list-item')} key={'film_' + film.id}>
-								<SearchResultsItem film={film}/>
+								<FilmItem film={film}/>
 							</div>
 						)}
 					</div>

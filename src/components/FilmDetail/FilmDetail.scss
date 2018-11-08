@@ -1,0 +1,23 @@
+@import '../../config';
+
+$blockName: 'film-detail';
+
+.#{$blockName} {
+	@include grid-flex();
+
+	&__similar {
+		width: 100%;
+	}
+	&__similar-title {
+	}
+	&__similar-list {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: flex-start;
+	}
+	&__similar-item {
+		@include col(3);
+	}
+
+}
