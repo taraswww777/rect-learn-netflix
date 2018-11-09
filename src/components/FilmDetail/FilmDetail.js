@@ -10,16 +10,21 @@ class FilmDetail extends ComponentBEM {
 
 	componentName = 'film-detail';
 
-	render() {
+	componentDidMount() {// выывается при монтировании
 		if (!this.props.state.filmDetail) {
 			this.props.loadListFilmByAlias(this.props.match.params.alias);
 		}
+	}
+
+	componentDidUpdate() { // выывается при обновлении props
 		if (this.props.state.filmDetail) {
 			if (!this.props.state.similarFilms) {
 				this.props.loadSimilarFilmsByGenre(this.props.state.filmDetail.genre);
 			}
 		}
+	}
 
+	render() {
 		return (
 			<div className={this.block()}>
 				<h1>Фильм детально</h1>
