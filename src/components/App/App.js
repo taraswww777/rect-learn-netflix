@@ -20,7 +20,9 @@ const stateDefault = {
 class App extends ComponentBEM {
 	componentName = 'app';
 
-	componentDidMount() {// вызывается при монтировании
+
+	constructor(a, b) {
+		super(a, b);
 		this.props.load(stateDefault);
 		this.props.loadListFilms();
 		this.props.load({
