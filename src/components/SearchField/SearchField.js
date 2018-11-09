@@ -17,7 +17,7 @@ class SearchField extends ComponentBEM {
 						this.props.setSearchQuery(event.target.value);
 					}}
 					onKeyPress={(event) => {
-						if (ComponentBEM.isKeyEnter(event)) {
+						if (this.isKeyEnter(event)) {
 							this.props.searchFilm();
 						}
 						return false;

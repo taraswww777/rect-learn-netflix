@@ -3,7 +3,7 @@
 $blockName: 'film-detail';
 
 .#{$blockName} {
-	@include grid-flex();
+	@include grid-base();
 
 	&__film-detail {
 		@include xy-grid();
@@ -11,6 +11,10 @@ $blockName: 'film-detail';
 		padding: 20px 0;
 	}
 
+	&__film-detail-img {
+		max-width: 100%;
+		max-height: 100%;
+	}
 	&__film-detail-block-img {
 		@include xy-cell(12);
 		text-align: center;

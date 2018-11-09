@@ -1,6 +1,7 @@
 import React from 'react';
 import './FilmItem.scss';
 import ComponentBEM from '../ComponentBEM.js';
+import {Link} from 'react-router-dom';
 
 class FilmItem extends ComponentBEM {
 
@@ -16,10 +17,11 @@ class FilmItem extends ComponentBEM {
 				</div>
 				:
 
-				<a className={this.block()} href={'/film/' + this.props.film.alias}>
+				<a className={this.block()} href={'/film/' + this.props.film.id}>
+				{console.log('this.props.film:',this.props.film)}
 					<img
 						className={this.elem('cover')}
-						src={this.props.film.img.src}
+						src={this.props.film.previewPicture}
 						alt={this.props.film.title}
 						title={this.props.film.title}/>
 					<div className={this.elem('info')}>

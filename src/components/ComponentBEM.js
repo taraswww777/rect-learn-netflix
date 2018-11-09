@@ -30,7 +30,7 @@ class ComponentBEM extends Component {
 
 	}
 
-	static isKeyEnter(event) {
+	isKeyEnter(event) {
 		return event.key === 'Enter';
 	}
 

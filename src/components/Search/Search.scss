@@ -3,7 +3,7 @@
 $blockName: 'search';
 
 .#{$blockName} {
-	@include grid-flex();
+	@include grid-base();
 
 	&__sidebar {
 		width: 100%;

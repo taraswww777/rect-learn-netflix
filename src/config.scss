@@ -47,7 +47,7 @@ $color-gray: #999;
 	}
 }
 
-@mixin grid-flex($col-count: 12) {
+@mixin grid-base() {
 	width: 100%;
 
 	&__container {

@@ -1,10 +1,10 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
 import './Search.scss';
-import SearchBar from "../SearchBar/SearchBar";
 import connect from "react-redux/es/connect/connect";
-import {mapStateToProps, mapStateToDispatchers} from '../../actions/reducer';
+import {mapStateToProps} from '../../reducers/.del.Reducer';
 import SearchResults from "../SearchResults/SearchResults";
+import SearchDispatch from "./SearchDispatch";
 
 
 class Search extends ComponentBEM {
@@ -14,22 +14,15 @@ class Search extends ComponentBEM {
 	render() {
 		return (
 			<div className={this.block()}>
-
-				<div className={this.elem('sidebar')}>
-					<SearchBar/>
-				</div>
-
 				<div className={this.elem('container')}>
 					<div className={this.elem('row')}>
 						<div className={this.elem('results')}>
-							<SearchResults/>
+							<SearchResults listFilms={this.props.state.ReducerFilms.searchResults}/>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		);
 	}
 }
-
-export default connect(mapStateToProps, mapStateToDispatchers)(Search);
+export default connect(mapStateToProps, SearchDispatch)(Search);

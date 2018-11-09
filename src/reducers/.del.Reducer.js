@@ -3,7 +3,7 @@ export const DATA_ADD = 'DATA_ADD';
 export const LOAD_DATA_FILMS_BY_ALIAS = 'LOAD_DATA_FILMS_BY_ALIAS';
 export const LOAD_DATA_SIMILAR_FILMS_BY_GENRE = 'LOAD_DATA_SIMILAR_FILMS_BY_GENRE';
 
-function reducer(state = {}, action = {}) {
+export function DelReducer(state = {}, action = {}) {
 	let listFilms = [], filmDetail = null, similarFilms = [];
 	switch (action.type.toUpperCase()) {
 		case DATA_ADD:
@@ -27,6 +27,7 @@ function reducer(state = {}, action = {}) {
 					}
 				}
 			});
+
 			return {
 				...state,
 				filmDetail: filmDetail
@@ -48,8 +49,6 @@ function reducer(state = {}, action = {}) {
 	}
 
 }
-
-export default reducer;
 
 
 export const mapStateToProps = state => ({

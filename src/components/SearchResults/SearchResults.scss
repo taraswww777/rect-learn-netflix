@@ -3,7 +3,7 @@
 $blockName: 'search-results';
 
 .#{$blockName} {
-	@include grid-flex();
+	@include grid-base();
 
 	&__result-list {
 		width: 100%;

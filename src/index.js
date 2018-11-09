@@ -2,17 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import reducer from './actions/reducer';
+import Reducers from './reducers/Reducers';
 import App from './components/App/App';
 import Search from "./components/Search/Search";
 import Exception404 from "./components/Exception404/Exception404";
 import FilmDetail from "./components/FilmDetail/FilmDetail";
+import {composeWithDevTools} from "redux-devtools-extension";
+import thunk from "redux-thunk";
 
-const store = createStore(reducer);
+const store = createStore(Reducers,
+	composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render((
 	<Provider store={store}>
@@ -20,7 +24,7 @@ ReactDOM.render((
 			<App>
 				<Switch>
 					<Route path='/' exact={true} component={Search}/>
-					<Route path='/film/:alias' exact={true} component={FilmDetail}/>
+					<Route path='/film/:id' exact={true} component={FilmDetail}/>
 					<Route path='*' component={Exception404}/>
 				</Switch>
 			</App>

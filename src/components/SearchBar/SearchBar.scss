@@ -3,7 +3,7 @@
 $blockName: 'search-bar';
 
 .#{$blockName} {
-	@include grid-flex();
+	@include grid-base();
 
 	background: #444444;
 	line-height: 1;

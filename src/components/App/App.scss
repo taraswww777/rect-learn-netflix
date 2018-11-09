@@ -9,7 +9,7 @@ body, html {
 }
 
 .#{$blockName} {
-	@include grid-flex();
+	@include grid-base();
 	@include ReactCssTransitionGroup();
 
 	min-height: 100vh;

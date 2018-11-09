@@ -1,5 +1,6 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM';
+import {Link} from 'react-router-dom';
 import './SearchLink.scss';
 
 
