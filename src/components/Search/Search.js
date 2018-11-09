@@ -21,7 +21,7 @@ class Search extends ComponentBEM {
 
 				<div className={this.elem('container')}>
 					<div className={this.elem('row')}>
-						<div className={this.elem('col-12')}>
+						<div className={this.elem('results')}>
 							<SearchResults/>
 						</div>
 					</div>

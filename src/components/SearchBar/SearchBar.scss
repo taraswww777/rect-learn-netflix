@@ -10,13 +10,13 @@ $blockName: 'search-bar';
 	padding: 10px 0;
 
 	&__status-bar-found {
-		@include col(5);
+		@include xy-cell(5);
 
 		color: #cccccc;
 	}
 
 	&__status-bar-sort {
-		@include col(7);
+		@include xy-cell(7);
 		display: flex;
 		flex-wrap: nowrap;
 		justify-content: flex-end;

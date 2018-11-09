@@ -1,4 +1,4 @@
-@import './config';
+@import '../../config';
 
 $blockName: 'app';
 
@@ -19,7 +19,6 @@ body, html {
 	align-items: baseline;
 	justify-content: space-between;
 	flex-direction: column;
-
 
 	&__header {
 		background: rgba(0, 0, 0, 0.5);
@@ -44,11 +43,13 @@ body, html {
 	}
 
 	&__header-title {
+		@include xy-grid($wrap: false);
+
 		padding: 15px 0;
 		width: 100%;
 		color: $color-red;
-		text-align: left;
 		margin-bottom: 20px;
+		justify-content: space-between;
 	}
 
 	&__search-by {

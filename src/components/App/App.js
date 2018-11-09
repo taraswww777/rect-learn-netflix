@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ComponentBEM from './components/ComponentBEM';
+import ComponentBEM from '../ComponentBEM';
 import './App.scss';
-import {mapStateToProps, mapStateToDispatchers} from './actions/reducer';
-import SearchField from './components/SearchField/SearchField';
-import SearchByButton from "./components/SearchByButton/SearchByButton";
-import SearchOkButton from "./components/SearchOkButton/SearchOkButton";
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import {mapStateToProps, mapStateToDispatchers} from '../../actions/reducer';
+import SearchField from '../SearchField/SearchField';
+import SearchByButton from "../SearchByButton/SearchByButton";
+import SearchOkButton from "../SearchOkButton/SearchOkButton";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import SearchLink from "../SearchLink/SearchLink";
 
 const stateDefault = {
 	listFilms: [],
@@ -153,8 +154,15 @@ class App extends ComponentBEM {
 				<header className={this.elem('header')}>
 					<div className={this.elem('container')}>
 						<div className={this.elem('row')}>
-							<div className={this.elem('header-title')}>netflix roulette</div>
 
+							<div className={this.elem('header-title')}>
+								netflix roulette
+								{window.location.pathname !== '/' &&
+								<SearchLink/>
+								}
+							</div>
+
+							{window.location.pathname === '/' &&
 							<div className={this.elem('search-area')}>
 								<div className={this.elem('search-area-title')}>Find your movie</div>
 								<div className={this.elem('search-area-field')}>
@@ -165,7 +173,9 @@ class App extends ComponentBEM {
 									</ErrorBoundary>
 								</div>
 							</div>
+							}
 
+							{window.location.pathname === '/' &&
 							<div className={this.elem('search-by')}>
 								<div className={this.elem('search-by-title')}>search by</div>
 								<ErrorBoundary>
@@ -189,6 +199,7 @@ class App extends ComponentBEM {
 									</div>
 								</ErrorBoundary>
 							</div>
+							}
 
 						</div>
 					</div>

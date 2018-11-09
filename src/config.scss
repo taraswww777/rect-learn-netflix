@@ -1,4 +1,7 @@
+@import '~foundation-sites/scss/foundation';
+
 $color-red: #e50914;
+$color-red-hover: #a80914;
 $color-gray: #999;
 
 @mixin btn() {
@@ -29,35 +32,30 @@ $color-gray: #999;
 	}
 }
 
-@mixin col($i:12,$col-count:12) {
-	width: (100% * $i) /$col-count;
+@mixin btn-white-red($color: #fff, $color-hover: $color-red) {
+	@include button($background: $color, $background-hover: $color-hover);
+
+	text-decoration: none;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	color: $color-hover;
+	border-color: $color-hover;
+	margin: 0;
+
+	&:hover {
+		color: $color;
+	}
 }
 
 @mixin grid-flex($col-count: 12) {
 	width: 100%;
 
 	&__container {
-		max-width: 1200px;
-		min-width: 320px;
-		width: 100%;
-		margin: 0 auto;
+		@include xy-grid-container();
 	}
 
 	&__row {
-		width: auto;
-		margin: 0 10px;
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	&__col {
-		width: 100%;
-	}
-
-	@for $i from 1 through $col-count {
-		&__col-#{$i} {
-			@include col($i, $col-count);
-		}
+		@include xy-grid();
 	}
 }
 

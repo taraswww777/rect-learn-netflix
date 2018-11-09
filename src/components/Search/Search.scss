@@ -4,7 +4,12 @@ $blockName: 'search';
 
 .#{$blockName} {
 	@include grid-flex();
+
 	&__sidebar {
 		width: 100%;
+	}
+
+	&__results{
+		@include xy-cell(12);
 	}
 }

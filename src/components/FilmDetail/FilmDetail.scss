@@ -5,19 +5,101 @@ $blockName: 'film-detail';
 .#{$blockName} {
 	@include grid-flex();
 
+	&__film-detail {
+		@include xy-grid();
+		background: rgba(0, 0, 0, 0.5);
+		padding: 20px 0;
+	}
+
+	&__film-detail-block-img {
+		@include xy-cell(12);
+		text-align: center;
+
+		@include breakpoint(medium) {
+			@include xy-cell(4);
+		}
+	}
+
+	&__film-detail-info {
+		@include xy-grid();
+		@include xy-cell(12);
+
+		margin-top: 20px;
+
+		@include breakpoint(medium) {
+			@include xy-cell(8);
+
+			margin-top: 0;
+		}
+	}
+
+	&__film-detail-info-title {
+		@include xy-grid();
+		@include xy-cell(12);
+
+		line-height: 1;
+		font-size: 2rem;
+		color: $color-red;
+		align-items: center;
+	}
+
+	&__film-detail-info-rating {
+		font-size: 1rem;
+		color: #fff;
+		border: 1px solid #fff;
+		border-radius: 50%;
+		padding: 5px;
+		margin-left: 10px;
+	}
+
+	&__film-detail-info-author {
+		@include xy-cell(12);
+		color: #ddd;
+	}
+
+	&__film-detail-info-stat {
+		@include xy-cell(12);
+
+		font-weight: bold;
+		color: #ffffff;
+	}
+
+	&__film-detail-info-year,
+	&__film-detail-info-size,
+	&__film-detail-info-genre {
+		margin-right: 20px;
+	}
+
+	&__film-detail-info-description {
+		margin-top: 30px;
+		color: #ccc;
+	}
+	///
 	&__similar {
-		width: 100%;
+
 	}
+
 	&__similar-title {
+		@include xy-cell(12);
 	}
+
 	&__similar-list {
-		display: flex;
-		flex-wrap: wrap;
-		width: 100%;
+		@include xy-grid();
+		@include xy-cell(12);
+
 		justify-content: flex-start;
 	}
+
 	&__similar-item {
-		@include col(3);
+		@include xy-cell(6);
+
+		@include breakpoint(medium) {
+			@include xy-cell(4);
+		}
+
+		@include breakpoint(large) {
+			@include xy-cell(3);
+		}
 	}
 
 }
