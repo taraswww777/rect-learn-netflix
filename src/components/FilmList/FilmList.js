@@ -18,9 +18,9 @@ class FilmList extends ComponentBEM {
 						data about List film not found
 					</div>
 					:
-					<div className={'list'}>
+					<div className={this.elem('list')}>
 						{filmList.map((film) => (
-							<div className={'item'} key={'film_' + film.id}>
+							<div className={this.elem('item')} key={'film_' + film.id}>
 								<FilmItem film={film}/>
 							</div>
 						))}

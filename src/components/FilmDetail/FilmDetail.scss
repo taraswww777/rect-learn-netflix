@@ -94,16 +94,6 @@ $blockName: 'film-detail';
 		justify-content: flex-start;
 	}
 
-	&__similar-item {
-		@include xy-cell(6);
 
-		@include breakpoint(medium) {
-			@include xy-cell(4);
-		}
-
-		@include breakpoint(large) {
-			@include xy-cell(3);
-		}
-	}
 
 }

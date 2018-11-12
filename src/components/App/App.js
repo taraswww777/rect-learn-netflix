@@ -7,12 +7,15 @@ import SearchLink from "../SearchLink/SearchLink";
 import AppDispatch from "./AppDispatch";
 import SearchBar from "../SearchBar/SearchBar";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import ReactCssTransitionGroup from "react-addons-css-transition-group";
+import {withRouter} from "react-router";
 
 
 class App extends ComponentBEM {
 	componentName = 'app';
 
 	render() {
+		// console.log('App render', this);
 		return (
 			<div className={this.block()}>
 				<header className={this.elem('header')}>
@@ -35,6 +38,14 @@ class App extends ComponentBEM {
 
 				<div className={this.elem('main')}>
 					<ErrorBoundary>
+						{/*<ReactCssTransitionGroup*/}
+							{/*transitionName="page"*/}
+							{/*transitionEnterTimeout={1000}*/}
+							{/*transitionLeaveTimeout={1000}*/}
+						{/*>*/}
+							{/*{React.cloneElement(this.props.children, {key: window.location.pathname})}*/}
+						{/*</ReactCssTransitionGroup>*/}
+
 						{this.props.children}
 					</ErrorBoundary>
 				</div>
@@ -51,4 +62,4 @@ class App extends ComponentBEM {
 	}
 }
 
-export default connect(mapStateToProps, AppDispatch)(App);
+export default connect(mapStateToProps, AppDispatch)(withRouter(App));

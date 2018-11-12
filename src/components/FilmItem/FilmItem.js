@@ -16,9 +16,7 @@ class FilmItem extends ComponentBEM {
 					</div>
 				</div>
 				:
-
 				<a className={this.block()} href={'/film/' + this.props.film.id}>
-				{console.log('this.props.film:',this.props.film)}
 					<img
 						className={this.elem('cover')}
 						src={this.props.film.previewPicture}
