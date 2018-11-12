@@ -1,5 +1,8 @@
+import _ from 'lodash';
+
 export const LOAD_FILM_LIST = 'LOAD_FILM_LIST';
 export const LOAD_FILM_DETAIL_BY_ID = 'LOAD_FILM_DETAIL_BY_ID';
+export const LOAD_FILM_SIMILAR = 'LOAD_FILM_SIMILAR';
 export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const DO_SEARCH_QUERY = 'DO_SEARCH_QUERY';
 export const SET_SEARCH_FILTER_BY = 'SET_SEARCH_FILTER_BY';
@@ -110,29 +113,42 @@ function searchFilm(state) {
 }
 
 function ReducerFilms(state = stateDefault, action) {
-	console.log('ReducerFilms', action, state);
 
 	switch (action.type) {
-		case SET_SEARCH_QUERY:
-			return {
-				...state,
-				searchQuery: action.payload
-			};
 
+		// LOAD
 		case LOAD_FILM_LIST:
 			return {
 				...state,
 				filmList: loadFilms()
 			};
 
-		case DO_SEARCH_QUERY:
-
-			return searchFilm(state);
-//
 		case LOAD_FILM_DETAIL_BY_ID:
 			return {
 				...state,
 				filmDetail: filterById(loadFilms(), action.payload.toLowerCase())
+			};
+		case LOAD_FILM_SIMILAR:
+			let similarFilms = [];
+			let genre = _.get(state, 'filmDetail.genre');
+			if (genre) {
+				similarFilms = filterByGenre(loadFilms(), state.filmDetail.genre.toLowerCase());
+			}
+
+			return {
+				...state,
+				similarFilms: similarFilms
+			};
+
+		// DO
+		case DO_SEARCH_QUERY:
+			return searchFilm(state);
+
+		// SET
+		case SET_SEARCH_QUERY:
+			return {
+				...state,
+				searchQuery: action.payload
 			};
 
 		case SET_SEARCH_FILTER_BY:

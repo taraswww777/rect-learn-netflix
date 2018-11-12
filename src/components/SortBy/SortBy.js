@@ -1,8 +1,6 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
 import './SortBy.scss';
-import connect from "react-redux/es/connect/connect";
-import {mapStateToDispatchers, mapStateToProps} from "../../reducers/.del.Reducer";
 
 class SortBy extends ComponentBEM {
 
@@ -19,4 +17,4 @@ class SortBy extends ComponentBEM {
 	}
 }
 
-export default connect(mapStateToProps, mapStateToDispatchers)(SortBy);
+export default SortBy;

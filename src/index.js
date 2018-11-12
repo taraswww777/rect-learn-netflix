@@ -6,7 +6,7 @@ import {applyMiddleware, createStore} from 'redux';
 
 import * as serviceWorker from './serviceWorker';
 import './index.css';
-import Reducers from './reducers/Reducers';
+import Reducers from './reducers/index';
 import App from './components/App/App';
 import Search from "./components/Search/Search";
 import Exception404 from "./components/Exception404/Exception404";

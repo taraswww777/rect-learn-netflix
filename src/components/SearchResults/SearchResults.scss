@@ -14,9 +14,4 @@ $blockName: 'search-results';
 	&__result-list-item {
 		@include xy-cell(4);
 	}
-
-	&__result-empty{
-		text-align: center;
-		font-size: 3rem;
-	}
 }

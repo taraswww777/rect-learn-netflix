@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ComponentBEM from '../ComponentBEM';
 import './App.scss';
-import {mapStateToProps} from '../../reducers/Reducers';
+import {mapStateToProps} from '../../reducers/index';
 import SearchLink from "../SearchLink/SearchLink";
 import AppDispatch from "./AppDispatch";
 import SearchBar from "../SearchBar/SearchBar";

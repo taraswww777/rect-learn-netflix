@@ -3,7 +3,7 @@ import ComponentBEM from '../ComponentBEM.js';
 import './SearchBar.scss';
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import connect from "react-redux/es/connect/connect";
-import {mapStateToProps} from "../../reducers/Reducers";
+import {mapStateToProps} from "../../reducers/index";
 import SearchField from "../SearchField/SearchField";
 import SearchBarDispatch from "./SearchBarDispatch";
 import SearchByButton from "../SearchByButton/SearchByButton";

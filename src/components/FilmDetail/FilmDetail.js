@@ -1,9 +1,11 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
+import _ from "lodash";
 import './FilmDetail.scss';
 import connect from "react-redux/es/connect/connect";
-import {mapStateToProps} from "../../reducers/Reducers";
+import {mapStateToProps} from "../../reducers/index";
 import FilmDetailDispatch from "./FilmDetailDispatch";
+import FilmList from "../FilmList/FilmList";
 
 
 class FilmDetail extends ComponentBEM {
@@ -14,76 +16,67 @@ class FilmDetail extends ComponentBEM {
 		this.props.loadDetailById(this.props.match.params.id);
 	}
 
-	// componentDidUpdate() { // выывается при обновлении props
-	// 	if (this.props.state.filmDetail) {
-	// 		if (!this.props.state.similarFilms) {
-	// 			this.props.loadSimilarFilmsByGenre(this.props.state.filmDetail.genre);
-	// 		}
-	// 	}
-	// }
-
 	render() {
-		console.log('this.props:', this.props);
+		let filmDetail = _.get(this.props, 'store.ReducerFilms.filmDetail');
+		let similarFilms = _.get(this.props, 'store.ReducerFilms.similarFilms');
+
 		return (
 
 			<div className={this.block()}>
 
-				{this.props.store.ReducerFilms.filmDetail &&
+				{filmDetail &&
 				<div className={this.elem('film-detail')}>
 					<div className={this.elem('film-detail-block-img')}>
-						<img className={this.elem('film-detail-img')}
-						     src={this.props.store.ReducerFilms.filmDetail.detailPicture}
-						     title={this.props.store.ReducerFilms.filmDetail.title}
-						     alt={this.props.store.ReducerFilms.filmDetail.title}/>
+						<img
+							className={this.elem('film-detail-img')}
+							src={filmDetail.detailPicture}
+							title={filmDetail.title}
+							alt={filmDetail.title}/>
 					</div>
 					<div className={this.elem('film-detail-info')}>
-						<div className={this.elem('film-detail-info-title')}> {this.props.store.ReducerFilms.filmDetail.title}
+						<div className={this.elem('film-detail-info-title')}> {filmDetail.title}
 
 							<span
-								className={this.elem('film-detail-info-rating')}>{this.props.store.ReducerFilms.filmDetail.rating}</span>
+								className={this.elem('film-detail-info-rating')}>{filmDetail.rating}</span>
 						</div>
 						<div
-							className={this.elem('film-detail-info-author')}>{this.props.store.ReducerFilms.filmDetail.author}</div>
+							className={this.elem('film-detail-info-author')}>{filmDetail.author}</div>
 						<div className={this.elem('film-detail-info-stat')}>
 
 
 							<span
-								className={this.elem('film-detail-info-year')}>{this.props.store.ReducerFilms.filmDetail.year}</span>
-							{this.props.store.ReducerFilms.filmDetail.size &&
+								className={this.elem('film-detail-info-year')}>{filmDetail.year}</span>
+							{filmDetail.size &&
 							<span className={this.elem('film-detail-info-size')}>
-								{this.props.store.ReducerFilms.filmDetail.size.value}
-								{this.props.store.ReducerFilms.filmDetail.size.unit}
+								{filmDetail.size.value}
+								{filmDetail.size.unit}
 								</span>
 							}
 							<span
-								className={this.elem('film-detail-info-genre')}>{this.props.store.ReducerFilms.filmDetail.genre}</span>
+								className={this.elem('film-detail-info-genre')}>{filmDetail.genre}</span>
 						</div>
 
 						<div
-							className={this.elem('film-detail-info-description')}>{this.props.store.ReducerFilms.filmDetail.detailText}</div>
+							className={this.elem('film-detail-info-description')}>{filmDetail.detailText}</div>
 					</div>
 
 				</div>
 				}
 
-				{/*{this.props.state.similarFilms &&*/}
-				{/*<div className={this.elem('similar')}>*/}
-				{/*<div className={this.elem('container')}>*/}
-				{/*<div className={this.elem('row')}>*/}
-				{/*<h2 className={this.elem('similar-title')}>similar films</h2>*/}
+				{similarFilms &&
+				<div className={this.elem('similar')}>
+					<div className={this.elem('container')}>
+						<div className={this.elem('row')}>
+							<h2 className={this.elem('similar-title')}>similar films</h2>
 
-				{/*<div className={this.elem('similar-list')}>*/}
-				{/*{this.props.state.similarFilms.map((film) => (*/}
-				{/*<div className={this.elem('similar-item')} key={'film_' + film.id}>*/}
-				{/*<FilmItem film={film}/>*/}
-				{/*</div>*/}
-				{/*)*/}
-				{/*)}*/}
-				{/*</div>*/}
-				{/*</div>*/}
-				{/*</div>*/}
-				{/*</div>*/}
-				{/*}*/}
+
+							<div className={this.elem('similar-list')}>
+								<FilmList filmList={similarFilms}/>
+							</div>
+						</div>
+					</div>
+				</div>
+				}
 			</div>
 		);
 	}
