@@ -14,11 +14,11 @@ class SearchField extends ComponentBEM {
 					className={this.elem('input')}
 					placeholder={'search...'}
 					onChange={(event) => {
-						this.props.setSearchQuery(event.target.value);
+						this.props.onSetSearchQuery(event.target.value);
 					}}
 					onKeyPress={(event) => {
 						if (this.isKeyEnter(event)) {
-							this.props.searchFilm();
+							this.props.onSearchFilm();
 						}
 						return false;
 					}}

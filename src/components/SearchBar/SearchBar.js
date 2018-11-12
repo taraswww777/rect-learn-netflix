@@ -26,8 +26,8 @@ class SearchBar extends ComponentBEM {
 							<div className={this.elem('search-area-field')}>
 								<ErrorBoundary>
 									<SearchField
-										searchFilm={this.props.searchFilm}
-										setSearchQuery={this.props.setSearchQuery}
+										onSearchFilm={this.props.onSearchFilm}
+										onSetSearchQuery={this.props.onSetSearchQuery}
 									/>
 								</ErrorBoundary>
 							</div>
@@ -42,7 +42,7 @@ class SearchBar extends ComponentBEM {
 										searchByTitle={'title'}
 										searchByCode={'title'}
 										searchByCurrent={this.props.store.ReducerFilms.searchBy}
-										setSearchBy={this.props.setSearchBy}
+										onSetSearchBy={this.props.onSetSearchBy}
 									/>
 								</div>
 								<div className={this.elem('search-by-btn')}>
@@ -50,13 +50,13 @@ class SearchBar extends ComponentBEM {
 										searchByTitle={'genre'}
 										searchByCode={'genre'}
 										searchByCurrent={this.props.store.ReducerFilms.searchBy}
-										setSearchBy={this.props.setSearchBy}
+										onSetSearchBy={this.props.onSetSearchBy}
 									/>
 								</div>
 
 								<div className={this.elem('search-run')}>
 									<SearchOkButton
-										searchFilm={this.props.searchFilm}
+										searchFilm={this.props.onSearchFilm}
 									/>
 								</div>
 							</ErrorBoundary>
@@ -79,7 +79,7 @@ class SearchBar extends ComponentBEM {
 										sortByTitle={'release date'}
 										sortByCode={'date'}
 										sortByCurrent={this.props.store.ReducerFilms.sortBy}
-										setSortBy={this.props.setSortBy}
+										onSetSortBy={this.props.onSetSortBy}
 									/>
 								</div>
 								<div className={this.elem('status-bar-sort-btn')}>
@@ -87,7 +87,7 @@ class SearchBar extends ComponentBEM {
 										sortByTitle={'rating'}
 										sortByCode={'rating'}
 										sortByCurrent={this.props.store.ReducerFilms.sortBy}
-										setSortBy={this.props.setSortBy}
+										onSetSortBy={this.props.onSetSortBy}
 									/>
 								</div>
 

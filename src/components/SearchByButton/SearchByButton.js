@@ -10,7 +10,7 @@ class SearchByButton extends ComponentBEM {
 		return (
 			<button
 				className={this.block('status', this.props.searchByCurrent === this.props.searchByCode ? 'active' : 'default')}
-				onClick={this.props.setSearchBy(this.props.searchByCode)}
+				onClick={this.props.onSetSearchBy(this.props.searchByCode)}
 			>{this.props.searchByTitle}</button>
 		);
 	}

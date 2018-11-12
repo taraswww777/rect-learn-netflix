@@ -1,24 +1,10 @@
 @import '../../config';
 
-$blockName: 'film-detail';
+$blockName: 'film-detail-info';
 
 .#{$blockName} {
 	@include grid-base();
 
-	&__col-12{
-		@include xy-cell(12);
-	}
-
-	&__film-detail {
-		@include xy-grid();
-		background: rgba(0, 0, 0, 0.5);
-		padding: 20px 0;
-	}
-
-	&__film-detail-img {
-		max-width: 100%;
-		max-height: 100%;
-	}
 	&__film-detail-block-img {
 		@include xy-cell(12);
 		text-align: center;
@@ -26,6 +12,11 @@ $blockName: 'film-detail';
 		@include breakpoint(medium) {
 			@include xy-cell(4);
 		}
+	}
+
+	&__film-detail-img {
+		max-width: 100%;
+		max-height: 100%;
 	}
 
 	&__film-detail-info {
@@ -97,7 +88,5 @@ $blockName: 'film-detail';
 
 		justify-content: flex-start;
 	}
-
-
 
 }

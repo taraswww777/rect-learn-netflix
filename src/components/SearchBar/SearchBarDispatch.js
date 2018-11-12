@@ -1,23 +1,59 @@
-import {SET_SEARCH_SORT_BY, SET_SEARCH_QUERY, DO_SEARCH_QUERY, SET_SEARCH_FILTER_BY} from "../../reducers/ReducerFilms";
+import {
+	SET_SEARCH_SORT_BY,
+	SET_SEARCH_QUERY,
+	DO_SEARCH_QUERY,
+	SET_SEARCH_FILTER_BY,
+	START_SEARCH_QUERY, FINISH_SEARCH_QUERY
+} from "../../reducers/ReducerFilms";
 
 export default function SearchBarDispatch(dispatch) {
 	return {
-		setSearchQuery: (searchQuery) => {
+		onSetSearchQuery: (searchQuery) => {
 			dispatch({type: SET_SEARCH_QUERY, payload: searchQuery});
 		},
 
-		searchFilm: () => {
-			dispatch({type: DO_SEARCH_QUERY});
+		onSearchFilm: () => {
+			const async = () => {
+				dispatch({type: START_SEARCH_QUERY});
+				return dispatch => {
+					return setTimeout(() => {
+						dispatch({type: DO_SEARCH_QUERY});
+						dispatch({type: FINISH_SEARCH_QUERY});
+					}, 1000);
+				}
+			};
+
+			dispatch(async());
 		},
 
-		setSearchBy: (searchBy = 'title') => {
+		onSetSearchBy: (searchBy = 'title') => {
 			return () => {
-				dispatch({type: SET_SEARCH_FILTER_BY, payload: searchBy});
+				const async = () => {
+					dispatch({type: START_SEARCH_QUERY});
+					return dispatch => {
+						return setTimeout(() => {
+							dispatch({type: SET_SEARCH_FILTER_BY, payload: searchBy});
+							dispatch({type: FINISH_SEARCH_QUERY});
+						}, 5000);
+					}
+				};
+
+				dispatch(async());
 			}
 		},
-		setSortBy: (sortBy = 'date') => {
+		onSetSortBy: (sortBy = 'date') => {
 			return () => {
-				dispatch({type: SET_SEARCH_SORT_BY, payload: sortBy });
+				const async = () => {
+					dispatch({type: START_SEARCH_QUERY});
+					return dispatch => {
+						return setTimeout(() => {
+							dispatch({type: SET_SEARCH_SORT_BY, payload: sortBy});
+							dispatch({type: FINISH_SEARCH_QUERY});
+						}, 5000);
+					}
+				};
+
+				dispatch(async());
 			}
 		}
 	};

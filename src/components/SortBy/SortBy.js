@@ -10,7 +10,7 @@ class SortBy extends ComponentBEM {
 		return (
 			<button
 				className={this.block('status', this.props.sortByCurrent === this.props.sortByCode ? 'active' : 'default')}
-				onClick={this.props.setSortBy(this.props.sortByCode)}
+				onClick={this.props.onSetSortBy(this.props.sortByCode)}
 			>{this.props.sortByTitle}
 			</button>
 		);

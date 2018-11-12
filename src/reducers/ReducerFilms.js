@@ -5,11 +5,18 @@ export const LOAD_FILM_DETAIL_BY_ID = 'LOAD_FILM_DETAIL_BY_ID';
 export const LOAD_FILM_SIMILAR = 'LOAD_FILM_SIMILAR';
 
 export const DO_SEARCH_QUERY = 'DO_SEARCH_QUERY';
+export const START_SEARCH_QUERY = 'START_DO_SEARCH_QUERY';
+export const FINISH_SEARCH_QUERY = 'FINISH_DO_SEARCH_QUERY';
+
+export const START_LOAD_FILM_DETAIL= 'START_LOAD_FILM_DETAIL';
+export const FINISH_LOAD_FILM_DETAIL= 'FINISH_LOAD_FILM_DETAIL';
+export const START_LOAD_FILM_SIMILAR= 'START_LOAD_FILM_SIMILAR';
+export const FINISH_LOAD_FILM_SIMILAR= 'FINISH_LOAD_FILM_SIMILAR';
 
 export const SET_SEARCH_FILTER_BY = 'SET_SEARCH_FILTER_BY';
 export const SET_SEARCH_SORT_BY = 'SET_SEARCH_SORT_BY';
 export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
-export const SET_FILM_CURRENT_ID= 'SET_FILM_CURRENT_ID';
+export const SET_FILM_CURRENT_ID = 'SET_FILM_CURRENT_ID';
 
 const stateDefault = {
 	listFilms: [],
@@ -160,15 +167,21 @@ function ReducerFilms(state = stateDefault, action) {
 				filmId: action.payload
 			};
 
-
 		case SET_SEARCH_FILTER_BY:
 			return searchFilm({...state, searchBy: action.payload});
 
 		case SET_SEARCH_SORT_BY:
 			return searchFilm({...state, sortBy: action.payload});
 
-		default:
-			return state;
+		case START_SEARCH_QUERY: return {...state, SEARCH_QUERY_STATUS: false};
+		case FINISH_SEARCH_QUERY: return {...state, SEARCH_QUERY_STATUS: true};
+
+		case START_LOAD_FILM_DETAIL: return {...state, LOAD_FILM_DETAIL_STATUS: false};
+		case FINISH_LOAD_FILM_DETAIL: return {...state,LOAD_FILM_DETAIL_STATUS: true};
+		case START_LOAD_FILM_SIMILAR: return {...state, LOAD_FILM_SIMILAR_STATUS: false};
+		case FINISH_LOAD_FILM_SIMILAR: return {...state, LOAD_FILM_SIMILAR_STATUS: true};
+
+		default:			return state;
 	}
 }
 

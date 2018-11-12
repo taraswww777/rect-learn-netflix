@@ -8,7 +8,7 @@ class SearchOkButton extends ComponentBEM {
 
 	render() {
 		return (
-			<button className={this.block('status', 'active')} onClick={this.props.searchFilm}>{
+			<button className={this.block('status', 'active')} onClick={this.props.onSearchFilm}>{
 				this.props.children ? this.props.children : 'search'
 			}</button>
 		);

@@ -7,6 +7,8 @@ import {mapStateToProps} from "../../reducers/index";
 import FilmDetailDispatch from "./FilmDetailDispatch";
 import FilmList from "../FilmList/FilmList";
 import {matchPath, withRouter} from "react-router";
+import FilmDetailInfo from "../FilmDetailInfo/FilmDetailInfo";
+import Loader from "../Loader/Loader";
 
 // const match = matchPath("/users/123", {
 // 	path: "/users/:id",
@@ -19,6 +21,7 @@ class FilmDetail extends ComponentBEM {
 	componentName = 'film-detail';
 
 	componentWillMount() {
+		console.log('this.props.match.params.id', this.props.match.params.id);
 		this.props.loadDetailById(this.props.match.params.id);
 	}
 
@@ -47,64 +50,36 @@ class FilmDetail extends ComponentBEM {
 		let filmDetail = _.get(this.props, 'store.ReducerFilms.filmDetail');
 		let similarFilms = _.get(this.props, 'store.ReducerFilms.similarFilms');
 
+		let LOAD_FILM_DETAIL_STATUS = _.get(this.props, 'store.ReducerFilms.LOAD_FILM_DETAIL_STATUS');
+		let LOAD_FILM_SIMILAR_STATUS = _.get(this.props, 'store.ReducerFilms.LOAD_FILM_SIMILAR_STATUS');
 		return (
 			<div className={this.block()}>
 
-				{filmDetail &&
-				<div className={this.elem('film-detail')}>
-					<div className={this.elem('container')}>
-						<div className={this.elem('row')}>
-							<div className={this.elem('film-detail-block-img')}>
-								<img
-									className={this.elem('film-detail-img')}
-									src={filmDetail.detailPicture}
-									title={filmDetail.title}
-									alt={filmDetail.title}/>
-							</div>
-							<div className={this.elem('film-detail-info')}>
-								<div className={this.elem('film-detail-info-title')}> {filmDetail.title}
-
-									<span className={this.elem('film-detail-info-rating')}>{filmDetail.rating}</span>
-								</div>
-								<div
-									className={this.elem('film-detail-info-author')}>{filmDetail.author}</div>
-								<div className={this.elem('film-detail-info-stat')}>
-
-
-							<span
-								className={this.elem('film-detail-info-year')}>{filmDetail.year}</span>
-									{filmDetail.size &&
-									<span className={this.elem('film-detail-info-size')}>
-								{filmDetail.size.value}
-										{filmDetail.size.unit}
-								</span>
-									}
-									<span
-										className={this.elem('film-detail-info-genre')}>{filmDetail.genre}</span>
-								</div>
-
-								<div
-									className={this.elem('film-detail-info-description')}>{filmDetail.detailText}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				}
-
-				{similarFilms &&
 				<div className={this.elem('container')}>
 					<div className={this.elem('row')}>
-						<div className={this.elem('similar')}>
+						<div className={this.elem('col-12')}>
+							{LOAD_FILM_DETAIL_STATUS === false && <Loader/>}
+							{LOAD_FILM_DETAIL_STATUS === true && filmDetail && <FilmDetailInfo filmDetail={filmDetail}/>}
+							{LOAD_FILM_DETAIL_STATUS === true && !filmDetail && <div>fail load film detail</div>}
+						</div>
+
+						{LOAD_FILM_SIMILAR_STATUS === false &&
+						<div className={this.elem('col-12')}>
+							<Loader/>
+						</div>
+						}
+
+						{LOAD_FILM_SIMILAR_STATUS === true && similarFilms &&
+						<div className={this.elem('col-12')}>
+
 							<h2 className={this.elem('similar-title')}>similar films</h2>
-
-
-							<div className={this.elem('similar-list')}>
+							< div className={this.elem('similar-list')}>
 								<FilmList filmList={similarFilms}/>
 							</div>
 						</div>
+						}
 					</div>
 				</div>
-				}
 			</div>
 		);
 	}
