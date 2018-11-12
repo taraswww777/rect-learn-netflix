@@ -19,22 +19,23 @@ export default function FilmDetailDispatch(dispatch) {
 						dispatch({type: LOAD_FILM_DETAIL_BY_ID, payload: FILM_ID});
 						dispatch({type: SET_FILM_CURRENT_ID, payload: FILM_ID});
 						dispatch({type: FINISH_LOAD_FILM_DETAIL});
+						const asyncSimilar = () => {
+							return dispatch => {
+								return setTimeout(() => {
+									dispatch({type: LOAD_FILM_SIMILAR});
+									dispatch({type: FINISH_LOAD_FILM_SIMILAR});
+								}, 500);
+							}
+						};
 
+						dispatch(asyncSimilar());
 					}, 1000);
 				}
 			};
 
-			dispatch(async());
 
-			const asyncSimilar = () => {
-				return dispatch => {
-					return setTimeout(() => {
-						dispatch({type: LOAD_FILM_SIMILAR});
-						dispatch({type: FINISH_LOAD_FILM_SIMILAR});
-					}, 5000);
-				}
-			};
-			dispatch(asyncSimilar());
+
+			dispatch(async());
 		},
 	};
 }
