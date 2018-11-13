@@ -1,17 +1,14 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './SearchByButton.scss';
+import React, {Component} from 'react';
+import {Button, listButtonStatus} from "../../components-styled/Button";
 
-class SearchByButton extends ComponentBEM {
-
-	componentName = 'search-by-button';
+class SearchByButton extends Component {
 
 	render() {
 		return (
-			<button
-				className={this.block('status', this.props.searchByCurrent === this.props.searchByCode ? 'active' : 'default')}
+			<Button
+				status={this.props.searchByCurrent === this.props.searchByCode && listButtonStatus.active}
 				onClick={this.props.onSetSearchBy(this.props.searchByCode)}
-			>{this.props.searchByTitle}</button>
+			>{this.props.searchByTitle}</Button>
 		);
 	}
 }

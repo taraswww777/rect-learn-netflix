@@ -1,16 +1,16 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './SearchOkButton.scss';
+import React, {Component} from 'react';
+import {Button, listButtonStatus, listButtonTypes} from "../../components-styled/Button";
 
-class SearchOkButton extends ComponentBEM {
-
-	componentName = 'search-ok-button';
+class SearchOkButton extends Component {
 
 	render() {
 		return (
-			<button className={this.block('status', 'active')} onClick={this.props.onSearchFilm}>{
+			<Button
+				status={listButtonStatus.active}
+				type={listButtonTypes.big}
+				onClick={this.props.onSearchFilm}>{
 				this.props.children ? this.props.children : 'search'
-			}</button>
+			}</Button>
 		);
 	}
 }
