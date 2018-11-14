@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ComponentBEM from '../ComponentBEM';
-import {Link} from 'react-router-dom';
 import './SearchLink.scss';
 
 
@@ -8,9 +8,9 @@ class SearchLink extends ComponentBEM {
 	componentName = 'search-link';
 
 	render() {
-		return (
+	  return (
 			<Link className={this.block()} to={'/'}>search</Link>
-		);
+	  );
 	}
 }
 

@@ -8,10 +8,10 @@ export const DO_SEARCH_QUERY = 'DO_SEARCH_QUERY';
 export const START_SEARCH_QUERY = 'START_DO_SEARCH_QUERY';
 export const FINISH_SEARCH_QUERY = 'FINISH_DO_SEARCH_QUERY';
 
-export const START_LOAD_FILM_DETAIL= 'START_LOAD_FILM_DETAIL';
-export const FINISH_LOAD_FILM_DETAIL= 'FINISH_LOAD_FILM_DETAIL';
-export const START_LOAD_FILM_SIMILAR= 'START_LOAD_FILM_SIMILAR';
-export const FINISH_LOAD_FILM_SIMILAR= 'FINISH_LOAD_FILM_SIMILAR';
+export const START_LOAD_FILM_DETAIL = 'START_LOAD_FILM_DETAIL';
+export const FINISH_LOAD_FILM_DETAIL = 'FINISH_LOAD_FILM_DETAIL';
+export const START_LOAD_FILM_SIMILAR = 'START_LOAD_FILM_SIMILAR';
+export const FINISH_LOAD_FILM_SIMILAR = 'FINISH_LOAD_FILM_SIMILAR';
 
 export const SET_SEARCH_FILTER_BY = 'SET_SEARCH_FILTER_BY';
 export const SET_SEARCH_SORT_BY = 'SET_SEARCH_SORT_BY';
@@ -19,171 +19,168 @@ export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const SET_FILM_CURRENT_ID = 'SET_FILM_CURRENT_ID';
 
 const stateDefault = {
-	listFilms: [],
-	filmDetail: {},
-	searchQuery: null,
-	searchBy: 'title',
-	sortBy: 'date',
-	searchResults: []
+  listFilms: [],
+  filmDetail: {},
+  searchQuery: null,
+  searchBy: 'title',
+  sortBy: 'date',
+  searchResults: [],
 };
 
 function compareFilmRating(filmA, filmB) {
-	return filmA.rating - filmB.rating;
+  return filmA.rating - filmB.rating;
 }
 
 function compareFilmTitle(filmA, filmB) {
-	if (filmA.title < filmB.title) {
-		return -1;
-	} else if (filmA.title > filmB.title) {
-		return 1;
-	}
-	return 0;
+  if (filmA.title < filmB.title) {
+    return -1;
+  } if (filmA.title > filmB.title) {
+    return 1;
+  }
+  return 0;
 }
 
 function compareFilmDate(filmA, filmB) {
-	return filmA.year - filmB.year;
+  return filmA.year - filmB.year;
 }
 
 function loadFilms() {
-	return require('../demoListFilms');
+  return require('../demoListFilms');
 }
 
 function filterByTitle(listFilms = [], searchQuery) {
-	let resultListSearch = [];
+  const resultListSearch = [];
 
-	listFilms
-		.filter((film) => film.title.toLowerCase().indexOf(searchQuery) > -1)
-		.map((film) => resultListSearch.push(film));
+  listFilms
+    .filter(film => film.title.toLowerCase().indexOf(searchQuery) > -1)
+    .map(film => resultListSearch.push(film));
 
-	return resultListSearch;
+  return resultListSearch;
 }
 
 function filterByGenre(listFilms = [], searchQuery) {
-	let resultListSearch = [];
-	listFilms
-		.filter((film) => film.genre.toLowerCase().indexOf(searchQuery) > -1)
-		.map((film) => resultListSearch.push(film));
+  const resultListSearch = [];
+  listFilms
+    .filter(film => film.genre.toLowerCase().indexOf(searchQuery) > -1)
+    .map(film => resultListSearch.push(film));
 
-	return resultListSearch;
+  return resultListSearch;
 }
 
 function filterById(listFilms = [], filmId) {
-	let resultListSearch = {};
-	listFilms
-		.filter((film) => film.id.toLowerCase().indexOf(filmId) > -1)
-		.map((film) => resultListSearch = film);
+  let resultListSearch = {};
+  listFilms
+    .filter(film => film.id.toLowerCase().indexOf(filmId) > -1)
+    .map(film => resultListSearch = film);
 
-	return resultListSearch;
+  return resultListSearch;
 }
 
 function sortSearchResults(listFilms = [], sortBy = 'date') {
-	if (!listFilms) {
-		return listFilms;
-	}
+  if (!listFilms) {
+    return listFilms;
+  }
 
-	switch (sortBy) {
-		case'rating':
-			listFilms.sort(compareFilmRating);
-			break;
-		case'date':
-			listFilms.sort(compareFilmDate);
-			break;
-		case'title':
-			listFilms.sort(compareFilmTitle);
-			break;
-		default:
-			listFilms.sort(compareFilmRating);
-			break;
-	}
-	return listFilms;
+  switch (sortBy) {
+    case 'rating':
+      listFilms.sort(compareFilmRating);
+      break;
+    case 'date':
+      listFilms.sort(compareFilmDate);
+      break;
+    case 'title':
+      listFilms.sort(compareFilmTitle);
+      break;
+    default:
+      listFilms.sort(compareFilmRating);
+      break;
+  }
+  return listFilms;
 }
 
 function searchFilm(state) {
-	let filmList = loadFilms();
-	let searchResults = [];
+  const filmList = loadFilms();
+  let searchResults = [];
 
-	if (!state.searchQuery) {
-		return {
-			...state
-		}
-	}
+  if (!state.searchQuery) {
+    return {
+      ...state,
+    };
+  }
 
-	switch (state.searchBy.toLowerCase()) {
-		case 'genre':
-			searchResults = filterByGenre(filmList, state.searchQuery);
-			break;
-		case 'title':
-			searchResults = filterByTitle(filmList, state.searchQuery);
-			break;
-		default:
-			searchResults = filterByTitle(filmList, state.searchQuery);
-			break;
-	}
-	return {...state, searchResults: sortSearchResults(searchResults, state.sortBy)};
+  switch (state.searchBy.toLowerCase()) {
+    case 'genre':
+      searchResults = filterByGenre(filmList, state.searchQuery);
+      break;
+    case 'title':
+      searchResults = filterByTitle(filmList, state.searchQuery);
+      break;
+    default:
+      searchResults = filterByTitle(filmList, state.searchQuery);
+      break;
+  }
+  return { ...state, searchResults: sortSearchResults(searchResults, state.sortBy) };
 }
 
 function ReducerFilms(state = stateDefault, action) {
+  switch (action.type) {
+    // LOAD
+    case LOAD_FILM_LIST:
+      return {
+        ...state,
+        filmList: loadFilms(),
+      };
 
-	switch (action.type) {
+    case LOAD_FILM_DETAIL_BY_ID:
+      return {
+        ...state,
+        filmDetail: filterById(loadFilms(), action.payload),
+      };
+    case LOAD_FILM_SIMILAR:
+      let similarFilms = [];
+      const genre = _.get(state, 'filmDetail.genre');
+      if (genre) {
+        similarFilms = filterByGenre(loadFilms(), state.filmDetail.genre.toLowerCase());
+      }
 
-		// LOAD
-		case LOAD_FILM_LIST:
-			return {
-				...state,
-				filmList: loadFilms()
-			};
+      return {
+        ...state,
+        similarFilms,
+      };
 
-		case LOAD_FILM_DETAIL_BY_ID:
-			return {
-				...state,
-				filmDetail: filterById(loadFilms(), action.payload)
-			};
-		case LOAD_FILM_SIMILAR:
-			let similarFilms = [];
-			let genre = _.get(state, 'filmDetail.genre');
-			if (genre) {
-				similarFilms = filterByGenre(loadFilms(), state.filmDetail.genre.toLowerCase());
-			}
+      // DO
+    case DO_SEARCH_QUERY:
+      return searchFilm(state);
 
-			return {
-				...state,
-				similarFilms: similarFilms
-			};
+      // SET
+    case SET_SEARCH_QUERY:
+      return {
+        ...state,
+        searchQuery: action.payload.toString().toLowerCase(),
+      };
 
-		// DO
-		case DO_SEARCH_QUERY:
-			return searchFilm(state);
+    case SET_FILM_CURRENT_ID:
+      return {
+        ...state,
+        filmId: action.payload,
+      };
 
-		// SET
-		case SET_SEARCH_QUERY:
-			return {
-				...state,
-				searchQuery: action.payload.toString().toLowerCase()
-			};
+    case SET_SEARCH_FILTER_BY:
+      return searchFilm({ ...state, searchBy: action.payload });
 
-		case SET_FILM_CURRENT_ID:
-			return {
-				...state,
-				filmId: action.payload
-			};
+    case SET_SEARCH_SORT_BY:
+      return searchFilm({ ...state, sortBy: action.payload });
 
-		case SET_SEARCH_FILTER_BY:
-			return searchFilm({...state, searchBy: action.payload});
+    case START_SEARCH_QUERY: return { ...state, SEARCH_QUERY_STATUS: false };
+    case FINISH_SEARCH_QUERY: return { ...state, SEARCH_QUERY_STATUS: true };
 
-		case SET_SEARCH_SORT_BY:
-			return searchFilm({...state, sortBy: action.payload});
+    case START_LOAD_FILM_DETAIL: return { ...state, LOAD_FILM_DETAIL_STATUS: false };
+    case FINISH_LOAD_FILM_DETAIL: return { ...state, LOAD_FILM_DETAIL_STATUS: true };
+    case START_LOAD_FILM_SIMILAR: return { ...state, LOAD_FILM_SIMILAR_STATUS: false };
+    case FINISH_LOAD_FILM_SIMILAR: return { ...state, LOAD_FILM_SIMILAR_STATUS: true };
 
-		case START_SEARCH_QUERY: return {...state, SEARCH_QUERY_STATUS: false};
-		case FINISH_SEARCH_QUERY: return {...state, SEARCH_QUERY_STATUS: true};
-
-		case START_LOAD_FILM_DETAIL: return {...state, LOAD_FILM_DETAIL_STATUS: false};
-		case FINISH_LOAD_FILM_DETAIL: return {...state,LOAD_FILM_DETAIL_STATUS: true};
-		case START_LOAD_FILM_SIMILAR: return {...state, LOAD_FILM_SIMILAR_STATUS: false};
-		case FINISH_LOAD_FILM_SIMILAR: return {...state, LOAD_FILM_SIMILAR_STATUS: true};
-
-		default:			return state;
-	}
+    default:			return state;
+  }
 }
 
 export default ReducerFilms;
-

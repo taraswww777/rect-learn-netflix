@@ -1,22 +1,21 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
 import './SearchBar.scss';
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-import connect from "react-redux/es/connect/connect";
-import {mapStateToProps} from "../../reducers/index";
-import SearchField from "../SearchField/SearchField";
-import SearchBarDispatch from "./SearchBarDispatch";
-import SearchByButton from "../SearchByButton/SearchByButton";
-import SearchOkButton from "../SearchOkButton/SearchOkButton";
-import SearchFoundCount from "../SearchFoundCount/SearchFoundCount";
-import SortBy from "../SortBy/SortBy";
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import connect from 'react-redux/es/connect/connect';
+import { mapStateToProps } from '../../reducers/index';
+import SearchField from '../SearchField/SearchField';
+import SearchBarDispatch from './SearchBarDispatch';
+import SearchByButton from '../SearchByButton/SearchByButton';
+import SearchOkButton from '../SearchOkButton/SearchOkButton';
+import SearchFoundCount from '../SearchFoundCount/SearchFoundCount';
+import SortBy from '../SortBy/SortBy';
 
 class SearchBar extends ComponentBEM {
-
 	componentName = 'search-bar';
 
 	render() {
-		return (
+	  return (
 			<div className={this.block()}>
 				<div className={this.elem('container')}>
 					<div className={this.elem('row')}>
@@ -65,8 +64,8 @@ class SearchBar extends ComponentBEM {
 
 						<div className={this.elem('status-bar-found')}>
 							<ErrorBoundary>
-								{this.props.store.ReducerFilms.searchResults &&
-								<SearchFoundCount countResults={this.props.store.ReducerFilms.searchResults.length}/>
+								{this.props.store.ReducerFilms.searchResults
+								&& <SearchFoundCount countResults={this.props.store.ReducerFilms.searchResults.length}/>
 								}
 							</ErrorBoundary>
 						</div>
@@ -97,8 +96,7 @@ class SearchBar extends ComponentBEM {
 					</div>
 				</div>
 			</div>
-		);
-
+	  );
 	}
 }
 

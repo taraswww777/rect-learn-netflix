@@ -1,21 +1,20 @@
 import React from 'react';
+import _ from 'lodash';
 import ComponentBEM from '../ComponentBEM.js';
-import _ from "lodash";
 import './FilmDetailInfo.scss';
 
 
 class FilmDetailInfo extends ComponentBEM {
-
 	componentName = 'film-detail-info';
 
 	render() {
-		let filmDetail = _.get(this.props, 'filmDetail');
+	  const filmDetail = _.get(this.props, 'filmDetail');
 
-		return (
+	  return (
 			<div className={this.block()}>
 
-				{filmDetail &&
-				<div className={this.elem('row')}>
+				{filmDetail
+				&& <div className={this.elem('row')}>
 					<div className={this.elem('film-detail-block-img')}>
 						<img
 							className={this.elem('film-detail-img')}
@@ -33,13 +32,13 @@ class FilmDetailInfo extends ComponentBEM {
 						<div className={this.elem('film-detail-info-stat')}>
 
 
-					<span
-						className={this.elem('film-detail-info-year')}>{filmDetail.year}</span>
-							{filmDetail.size &&
-							<span className={this.elem('film-detail-info-size')}>
-					{filmDetail.size.value}
+							<span
+								className={this.elem('film-detail-info-year')}>{filmDetail.year}</span>
+							{filmDetail.size
+							&& <span className={this.elem('film-detail-info-size')}>
+								{filmDetail.size.value}
 								{filmDetail.size.unit}
-					</span>
+							</span>
 							}
 							<span
 								className={this.elem('film-detail-info-genre')}>{filmDetail.genre}</span>
@@ -52,7 +51,7 @@ class FilmDetailInfo extends ComponentBEM {
 				}
 
 			</div>
-		);
+	  );
 	}
 }
 

@@ -4,16 +4,15 @@ import ComponentBEM from '../ComponentBEM.js';
 
 
 class SearchResultsEmpty extends ComponentBEM {
-
 	componentName = 'search-results-empty';
 
 
 	render() {
-		return (
+	  return (
 			<div className={this.block()}>
 				No films found
 			</div>
-		);
+	  );
 	}
 }
 

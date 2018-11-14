@@ -1,17 +1,16 @@
 import React from 'react';
 import ComponentBEM from '../ComponentBEM.js';
-import './SearchFoundCount.scss'
+import './SearchFoundCount.scss';
 
 class SearchFoundCount extends ComponentBEM {
-
 	componentName = 'search-found-count';
 
 	render() {
-		return (
+	  return (
 			<div className={this.block()}>
 				{this.props.countResults} movies found
 			</div>
-		);
+	  );
 	}
 }
 

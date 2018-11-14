@@ -1,18 +1,18 @@
 import React from 'react';
 import './Loader.scss';
-import logo from "../../logo.svg";
-import ComponentBEM from "../ComponentBEM";
+import logo from '../../logo.svg';
+import ComponentBEM from '../ComponentBEM';
 
 class Loader extends ComponentBEM {
 	componentName = 'loader';
 
 	render() {
-		return (
+	  return (
 			<div className={this.block()}>
-				<img src={logo} className={this.elem('spin')} alt="loader" title={"Loading..."}/>
+				<img src={logo} className={this.elem('spin')} alt="loader" title={'Loading...'}/>
 			</div>
 
-		);
+	  );
 	}
 }
 

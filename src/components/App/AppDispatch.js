@@ -1,5 +1,5 @@
 export default function AppDispatch(dispatch) {
-	return {
+  return {
 
-	};
+  };
 }
