@@ -8,9 +8,10 @@ import {
 
 export default function FilmDetailDispatch(dispatch) {
 	return {
+		setCurrentFilmDetailById: (FILM_ID) => {
+			dispatch({type: SET_FILM_CURRENT_ID, payload: FILM_ID});
+		},
 		loadDetailById: (FILM_ID) => {
-
-
 			const async = () => {
 				dispatch({type: START_LOAD_FILM_DETAIL});
 				dispatch({type: START_LOAD_FILM_SIMILAR});

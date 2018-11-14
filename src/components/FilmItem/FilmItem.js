@@ -16,7 +16,7 @@ class FilmItem extends ComponentBEM {
 					</div>
 				</div>
 				:
-				<a className={this.block()} href={'/film/' + this.props.film.id}>
+				<Link className={this.block()} to={'/film/' + this.props.film.id}>
 					<img
 						className={this.elem('cover')}
 						src={this.props.film.previewPicture}
@@ -27,7 +27,7 @@ class FilmItem extends ComponentBEM {
 						<div className={this.elem('year')}>{this.props.film.year}</div>
 						<div className={this.elem('genre')}>{this.props.film.genre}</div>
 					</div>
-				</a>
+				</Link>
 		)
 			;
 	}

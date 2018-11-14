@@ -9,7 +9,7 @@ class SearchLink extends ComponentBEM {
 
 	render() {
 		return (
-			<a className={this.block()} href={'/'}>search</a>
+			<Link className={this.block()} to={'/'}>search</Link>
 		);
 	}
 }

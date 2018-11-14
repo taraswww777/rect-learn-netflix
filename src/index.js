@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Switch} from "react-router-dom";
-// import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
-import {createBrowserHistory as createHistory} from 'history';
-import {syncHistoryWithStore} from 'react-router-redux';
 
 import * as serviceWorker from './serviceWorker';
 import './index.css';
@@ -21,11 +18,10 @@ const store = createStore(Reducers,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
-const history = syncHistoryWithStore(createHistory(), store);
 
 ReactDOM.render((
 	<Provider store={store}>
-		<Router history={history}>
+		<Router>
 			<App>
 				<Switch>
 					<Route path='/' exact={true} component={Search}/>

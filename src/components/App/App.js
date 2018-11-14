@@ -70,4 +70,4 @@ class App extends ComponentBEM {
 	}
 }
 
-export default connect(mapStateToProps, AppDispatch)(withRouter(App));
+export default withRouter(connect(mapStateToProps, AppDispatch)(withRouter(App)));
