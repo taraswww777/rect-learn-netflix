@@ -34,7 +34,8 @@ function compareFilmRating(filmA, filmB) {
 function compareFilmTitle(filmA, filmB) {
   if (filmA.title < filmB.title) {
     return -1;
-  } if (filmA.title > filmB.title) {
+  }
+  if (filmA.title > filmB.title) {
     return 1;
   }
   return 0;
@@ -52,7 +53,8 @@ function filterByTitle(listFilms = [], searchQuery) {
   const resultListSearch = [];
 
   listFilms
-    .filter(film => film.title.toLowerCase().indexOf(searchQuery) > -1)
+    .filter(film => film.title.toLowerCase()
+      .indexOf(searchQuery) > -1)
     .map(film => resultListSearch.push(film));
 
   return resultListSearch;
@@ -61,7 +63,8 @@ function filterByTitle(listFilms = [], searchQuery) {
 function filterByGenre(listFilms = [], searchQuery) {
   const resultListSearch = [];
   listFilms
-    .filter(film => film.genre.toLowerCase().indexOf(searchQuery) > -1)
+    .filter(film => film.genre.toLowerCase()
+      .indexOf(searchQuery) > -1)
     .map(film => resultListSearch.push(film));
 
   return resultListSearch;
@@ -70,7 +73,8 @@ function filterByGenre(listFilms = [], searchQuery) {
 function filterById(listFilms = [], filmId) {
   let resultListSearch = {};
   listFilms
-    .filter(film => film.id.toLowerCase().indexOf(filmId) > -1)
+    .filter(film => film.id.toLowerCase()
+      .indexOf(filmId) > -1)
     .map(film => resultListSearch = film);
 
   return resultListSearch;
@@ -119,7 +123,10 @@ function searchFilm(state) {
       searchResults = filterByTitle(filmList, state.searchQuery);
       break;
   }
-  return { ...state, searchResults: sortSearchResults(searchResults, state.sortBy) };
+  return {
+    ...state,
+    searchResults: sortSearchResults(searchResults, state.sortBy),
+  };
 }
 
 function ReducerFilms(state = stateDefault, action) {
@@ -156,7 +163,8 @@ function ReducerFilms(state = stateDefault, action) {
     case SET_SEARCH_QUERY:
       return {
         ...state,
-        searchQuery: action.payload.toString().toLowerCase(),
+        searchQuery: action.payload.toString()
+          .toLowerCase(),
       };
 
     case SET_FILM_CURRENT_ID:
@@ -166,20 +174,51 @@ function ReducerFilms(state = stateDefault, action) {
       };
 
     case SET_SEARCH_FILTER_BY:
-      return searchFilm({ ...state, searchBy: action.payload });
+      return searchFilm({
+        ...state,
+        searchBy: action.payload,
+      });
 
     case SET_SEARCH_SORT_BY:
-      return searchFilm({ ...state, sortBy: action.payload });
+      return searchFilm({
+        ...state,
+        sortBy: action.payload,
+      });
 
-    case START_SEARCH_QUERY: return { ...state, SEARCH_QUERY_STATUS: false };
-    case FINISH_SEARCH_QUERY: return { ...state, SEARCH_QUERY_STATUS: true };
+    case START_SEARCH_QUERY:
+      return {
+        ...state,
+        SEARCH_QUERY_STATUS: false,
+      };
+    case FINISH_SEARCH_QUERY:
+      return {
+        ...state,
+        SEARCH_QUERY_STATUS: true,
+      };
 
-    case START_LOAD_FILM_DETAIL: return { ...state, LOAD_FILM_DETAIL_STATUS: false };
-    case FINISH_LOAD_FILM_DETAIL: return { ...state, LOAD_FILM_DETAIL_STATUS: true };
-    case START_LOAD_FILM_SIMILAR: return { ...state, LOAD_FILM_SIMILAR_STATUS: false };
-    case FINISH_LOAD_FILM_SIMILAR: return { ...state, LOAD_FILM_SIMILAR_STATUS: true };
+    case START_LOAD_FILM_DETAIL:
+      return {
+        ...state,
+        LOAD_FILM_DETAIL_STATUS: false,
+      };
+    case FINISH_LOAD_FILM_DETAIL:
+      return {
+        ...state,
+        LOAD_FILM_DETAIL_STATUS: true,
+      };
+    case START_LOAD_FILM_SIMILAR:
+      return {
+        ...state,
+        LOAD_FILM_SIMILAR_STATUS: false,
+      };
+    case FINISH_LOAD_FILM_SIMILAR:
+      return {
+        ...state,
+        LOAD_FILM_SIMILAR_STATUS: true,
+      };
 
-    default:			return state;
+    default:
+      return state;
   }
 }
 
