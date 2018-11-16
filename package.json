@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rebass/grid": "^6.0.0-4",
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.86.0",
@@ -10,7 +11,6 @@
     "node-sass": "^4.10.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-grid-system": "^4.3.1",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
