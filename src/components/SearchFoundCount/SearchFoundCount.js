@@ -1,16 +1,14 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './SearchFoundCount.scss';
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-class SearchFoundCount extends ComponentBEM {
-	componentName = 'search-found-count';
+const BSearchFoundCount = styled.div``;
+
+class SearchFoundCount extends Component {
 
 	render() {
-	  return (
-			<div className={this.block()}>
-				{this.props.countResults} movies found
-			</div>
-	  );
+		return (
+			<BSearchFoundCount>{this.props.countResults} movies found</BSearchFoundCount>
+		);
 	}
 }
 

@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ComponentBEM from '../ComponentBEM';
-import './SearchLink.scss';
+import styled from 'styled-components';
 
+const BSearchLink = styled(Link)`
 
-class SearchLink extends ComponentBEM {
+`;
+
+class SearchLink extends Component {
 	componentName = 'search-link';
 
 	render() {
-	  return (
-			<Link className={this.block()} to={'/'}>search</Link>
-	  );
+		return (
+			<BSearchLink to={'/'}>search</BSearchLink>
+		);
 	}
 }
 

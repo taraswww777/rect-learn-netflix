@@ -1,9 +1,0 @@
-@import '../../config';
-
-$blockName: 'search-link';
-
-
-
-.#{$blockName} {
-	@include btn-white-red();
-}

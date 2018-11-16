@@ -14,8 +14,7 @@ import FilmDetail from './components/FilmDetail/FilmDetail';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-const store = createStore(Reducers,
-  composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(Reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 
 ReactDOM.render((
@@ -34,11 +33,3 @@ ReactDOM.render((
 
 
 serviceWorker.unregister();
-/*
-npm i -S eslint
-npm i -S babel-eslint
-npm i -S eslint-plugin-react
-npm i -S eslint-config-airbnb
-npm i -S eslint-plugin-import
-npm i -S eslint-plugin-jsx-a11y
-*/

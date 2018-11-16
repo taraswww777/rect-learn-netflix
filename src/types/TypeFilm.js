@@ -5,7 +5,7 @@ export type FilmSize = {
 	unit: string
 };
 
-export type Film = {
+export type TypeFilm = {
 	id: string,
 	title: string,
 	rating: number,

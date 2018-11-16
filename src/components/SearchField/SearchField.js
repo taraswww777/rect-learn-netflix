@@ -1,31 +1,41 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './SearchField.scss';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { isKeyEnter, settings } from '../../rebass-grid-custom';
+import connect from 'react-redux/es/connect/connect';
+import { mapStateToProps } from '../../reducers';
 
-class SearchField extends ComponentBEM {
-	componentName = 'search-field';
+const BSearchField = styled.input`
+	width: calc(100% - 30px);
+	padding: 10px 15px;
+	max-width: 100%;
+
+	:focus,
+	:active {
+		border-bottom: 2px  ${settings.colors.red} solid;
+	}
+`;
+
+class SearchField extends Component {
 
 	render() {
-	  return (
-			<div className={this.block()}>
-				<input
-					type="text"
-					className={this.elem('input')}
-					placeholder={'search...'}
-					onChange={(event) => {
-					  this.props.onSetSearchQuery(event.target.value);
-					}}
-					onKeyPress={(event) => {
-					  if (this.isKeyEnter(event)) {
-					    this.props.onSearchFilm();
-					  }
-					  return false;
-					}}
+		return (
+			<BSearchField
+				type="text"
+				placeholder={'search...'}
 
-				/>
-			</div>
-	  );
+				onChange={(event) => {
+					this.props.onSetSearchQuery(event.target.value);
+				}}
+				onKeyPress={(event) => {
+					if (isKeyEnter(event)) {
+						this.props.onSearchFilm();
+					}
+					return false;
+				}}
+
+			/>
+		);
 	}
 }
 
-export default SearchField;
+export default connect(mapStateToProps)(SearchField);

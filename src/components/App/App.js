@@ -1,74 +1,88 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import ComponentBEM from '../ComponentBEM';
-import './App.scss';
-import { mapStateToProps } from '../../reducers/index';
-import SearchLink from '../SearchLink/SearchLink';
-import AppDispatch from './AppDispatch';
+import React, { Component } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-// import ReactCssTransitionGroup from "react-addons-css-transition-group";
 import { withRouter } from 'react-router';
-import { Container, Col, Row } from 'react-grid-system';
+import { Ceil, Container, Row } from '../../rebass-grid-custom';
+import AppHeader from '../AppHeader/AppHeader';
+import styled from 'styled-components';
+import AppFooter from '../AppFooter/AppFooter';
+import _ from 'lodash';
 
-class App extends ComponentBEM {
-	componentName = 'app';
+const BApp = styled.div` 
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`;
+
+const BAppHeader = styled.div`
+	background:#ccc;
+	padding: 5px 0;
+	width: 100%;
+`;
+console.log('BAppHeader', BAppHeader);
+const BAppFooter = styled(BAppHeader)``;
+const BAppHeaderSearchBar = styled.div``;
+const BAppHeaderContent = styled.div`
+	width: 100%;
+	flex-grow: 1;
+`;
+
+
+class App extends Component {
 
 	render() {
-	  // console.log('App render', this);
-	  return (
-			<div className={this.block()}>
-				<header className={this.elem('header')}>
+		let location = _.get(this.props, 'location.pathname');
+		return (
+			<BApp>
+				<BAppHeader>
 					<Container>
 						<Row>
-							<Col sm={12}>
+							<Ceil width={[1]}>
 								<ErrorBoundary>
-									<div className={this.elem('header-title')}>
-										netflix roulette
-										{window.location.pathname !== '/' && <SearchLink/>}
-									</div>
+									<AppHeader/>
 								</ErrorBoundary>
-							</Col>
+							</Ceil>
 						</Row>
 					</Container>
 
-					{window.location.pathname === '/' && <SearchBar/>}
-
-				</header>
-
-
-				<div className={this.elem('main')}>
-					<ErrorBoundary>
-						{/* <ReactCssTransitionGroup */}
-						{/* transitionName="page" */}
-						{/* transitionEnterTimeout={1000} */}
-						{/* transitionLeaveTimeout={1000} */}
-						{/* > */}
-						{/* {React.cloneElement(this.props.children, {key: window.location.pathname})} */}
-						{/* </ReactCssTransitionGroup> */}
-
+					{location === '/' && <BAppHeaderSearchBar>
 						<Container>
 							<Row>
-								<Col sm={12}>
+								<Ceil width={[1]}>
+									<SearchBar/>
+								</Ceil>
+							</Row>
+						</Container>
+					</BAppHeaderSearchBar>}
+				</BAppHeader>
+
+
+				<BAppHeaderContent>
+					<ErrorBoundary>
+						<Container>
+							<Row>
+								<Ceil width={[1]}>
 									{this.props.children}
-								</Col>
+								</Ceil>
 							</Row>
 						</Container>
 					</ErrorBoundary>
-				</div>
+				</BAppHeaderContent>
 
-				<footer className={this.elem('footer')}>
+				<BAppFooter>
 					<Container>
 						<Row>
-							<Col sm={12}>
-								netflix roulette
-							</Col>
+							<Ceil>
+								<AppFooter/>
+							</Ceil>
 						</Row>
 					</Container>
-				</footer>
-			</div>
-	  );
+				</BAppFooter>
+			</BApp>
+		);
 	}
 }
 
-export default withRouter(connect(mapStateToProps, AppDispatch)(withRouter(App)));
+export default withRouter(App);

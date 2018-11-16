@@ -1,31 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
-import './FilmList.scss';
-import ComponentBEM from '../ComponentBEM.js';
+import styled from 'styled-components';
 import FilmItem from '../FilmItem/FilmItem';
+import { Ceil, Row } from '../../rebass-grid-custom';
 
+const BFilmList = styled.div``;
+const BFilmList_Empty = styled.div``;
+const BFilmList_List = styled(Row)``;
+const BFilmList_ListItem = styled(Ceil)``;
 
-class FilmList extends ComponentBEM {
-	componentName = 'film-list';
+class FilmList extends Component {
+
 
 	render() {
-	  const filmList = _.get(this.props, 'filmList');
-	  return (
-			<div className={this.block()}>
-				{!filmList
-				  ? <div className={this.elem('empty')}>
-						data about List film not found
-					</div>
-				  :					<div className={this.elem('list')}>
+		const filmList = _.get(this.props, 'filmList');
+		return (
+			<BFilmList>
+				{!filmList ?
+					<BFilmList_Empty>data about List film not found</BFilmList_Empty>
+					:
+					<BFilmList_List>
 						{filmList.map(film => (
-							<div className={this.elem('item')} key={`film_${film.id}`}>
+							<BFilmList_ListItem
+								width={[1, 1 / 2, 1 / 4, 1 / 6]}
+								key={`film_${film.id}`}>
 								<FilmItem film={film}/>
-							</div>
+							</BFilmList_ListItem>
 						))}
-					</div>
+					</BFilmList_List>
 				}
-			</div>
-	  );
+			</BFilmList>
+		);
 	}
 }
 

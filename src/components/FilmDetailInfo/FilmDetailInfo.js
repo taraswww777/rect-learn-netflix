@@ -1,57 +1,70 @@
-import React from 'react';
+import React, { Component } from 'react';
 import _ from 'lodash';
-import ComponentBEM from '../ComponentBEM.js';
-import './FilmDetailInfo.scss';
+import styled from 'styled-components';
+import { Ceil, PreLoader, Row } from '../../rebass-grid-custom';
+
+const BFilmDetailInfo = styled(Row)``;
+
+const BFilmDetailInfo_header = styled(Ceil)``;
+const BFilmDetailInfo_title = styled.h1``;
+
+const BFilmDetailInfo_leftBoxImg = styled(Ceil)``;
+const BFilmDetailInfo_leftImg = styled.img`
+	max-width: 100%;
+`;
+
+const FilmDetailInfo_rating = styled.span` padding: 5px;`;
+const BFilmDetailInfo_author = styled.span`padding: 5px;`;
+const BFilmDetailInfo_Year = styled.span` padding: 5px;`;
+const BFilmDetailInfo_Size = styled.span` padding: 5px;`;
+const BFilmDetailInfo_SizeValue = styled.span` `;
+const BFilmDetailInfo_SizeUnit = styled.span` `;
+const BFilmDetailInfo_Genre = styled.span` padding: 5px;`;
+
+const BFilmDetailInfo_detailDescription = styled(Ceil)``;
 
 
-class FilmDetailInfo extends ComponentBEM {
-	componentName = 'film-detail-info';
+class FilmDetailInfo extends Component {
 
 	render() {
-	  const filmDetail = _.get(this.props, 'filmDetail');
+		const filmDetail = _.get(this.props, 'filmDetail');
 
-	  return (
-			<div className={this.block()}>
+		if (!filmDetail) {
+			return (
+				<BFilmDetailInfo><PreLoader/></BFilmDetailInfo>
+			);
+		}
 
-				{filmDetail
-				&& <div className={this.elem('row')}>
-					<div className={this.elem('film-detail-block-img')}>
-						<img
-							className={this.elem('film-detail-img')}
-							src={filmDetail.detailPicture}
-							title={filmDetail.title}
-							alt={filmDetail.title}/>
-					</div>
-					<div className={this.elem('film-detail-info')}>
-						<div className={this.elem('film-detail-info-title')}> {filmDetail.title}
+		return (
+			<BFilmDetailInfo>
+				<BFilmDetailInfo_header width={[1]}>
+					<BFilmDetailInfo_title>{filmDetail.title}</BFilmDetailInfo_title>
+				</BFilmDetailInfo_header>
 
-							<span className={this.elem('film-detail-info-rating')}>{filmDetail.rating}</span>
-						</div>
-						<div
-							className={this.elem('film-detail-info-author')}>{filmDetail.author}</div>
-						<div className={this.elem('film-detail-info-stat')}>
+				<BFilmDetailInfo_leftBoxImg width={[1, 1 / 2]}>
 
+					<FilmDetailInfo_rating>rating: {filmDetail.rating}</FilmDetailInfo_rating>
 
-							<span
-								className={this.elem('film-detail-info-year')}>{filmDetail.year}</span>
-							{filmDetail.size
-							&& <span className={this.elem('film-detail-info-size')}>
-								{filmDetail.size.value}
-								{filmDetail.size.unit}
-							</span>
-							}
-							<span
-								className={this.elem('film-detail-info-genre')}>{filmDetail.genre}</span>
-						</div>
+					<BFilmDetailInfo_author>author: {filmDetail.author}</BFilmDetailInfo_author>
 
-						<div
-							className={this.elem('film-detail-info-description')}>{filmDetail.detailText}</div>
-					</div>
-				</div>
-				}
+					<BFilmDetailInfo_Year>year: {filmDetail.year}</BFilmDetailInfo_Year>
+					{filmDetail.size
+					&& <BFilmDetailInfo_Size>size:
+						<BFilmDetailInfo_SizeValue>{filmDetail.size.value}</BFilmDetailInfo_SizeValue>
+						<BFilmDetailInfo_SizeUnit>{filmDetail.size.unit}</BFilmDetailInfo_SizeUnit>
+					</BFilmDetailInfo_Size>
+					}
+					<BFilmDetailInfo_Genre>genre: {filmDetail.genre}</BFilmDetailInfo_Genre>
 
-			</div>
-	  );
+					<BFilmDetailInfo_leftImg
+						src={filmDetail.detailPicture}
+						title={filmDetail.title}
+						alt={filmDetail.title}/>
+				</BFilmDetailInfo_leftBoxImg>
+
+				<BFilmDetailInfo_detailDescription width={1 / 2}>{filmDetail.detailText}</BFilmDetailInfo_detailDescription>
+			</BFilmDetailInfo>
+		);
 	}
 }
 

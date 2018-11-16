@@ -1,8 +1,7 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './ErrorBoundary.scss';
+import React, { Component } from 'react';
 
-class ErrorBoundary extends ComponentBEM {
+
+class ErrorBoundary extends Component {
 	componentName = 'error-boundary';
 
 		state = {

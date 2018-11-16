@@ -1,8 +1,7 @@
-import React from 'react';
-import ComponentBEM from '../ComponentBEM.js';
-import './Exception404.scss';
+import React, { Component } from 'react';
 
-class Exception404 extends ComponentBEM {
+
+class Exception404 extends Component {
 	componentName = 'exception-404';
 
 	render() {

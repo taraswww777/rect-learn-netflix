@@ -1,18 +1,17 @@
-import React from 'react';
-import './SearchResultsEmpty.scss';
-import ComponentBEM from '../ComponentBEM.js';
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
+const BSearchResultsEmpty = styled.div`
+	text-align: center;
+	font-size: 3rem;
+`;
 
-class SearchResultsEmpty extends ComponentBEM {
-	componentName = 'search-results-empty';
-
+class SearchResultsEmpty extends Component {
 
 	render() {
-	  return (
-			<div className={this.block()}>
-				No films found
-			</div>
-	  );
+		return (
+			<BSearchResultsEmpty>No films found</BSearchResultsEmpty>
+		);
 	}
 }
 
