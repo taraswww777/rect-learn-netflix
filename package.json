@@ -31,7 +31,10 @@
     "babel-preset-flow": "6.23.0",
     "flow-bin": "0.86.0",
     "node-sass": "4.10.0",
-    "typescript": "3.1.6"
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.6"
   },
   "scripts": {
     "gitPushDev": "git push origin dev",
@@ -39,7 +42,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "lint": "tslint -c tslint.json 'src/**/*.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
