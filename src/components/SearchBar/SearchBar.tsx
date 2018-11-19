@@ -1,63 +1,30 @@
-import React, { Component } from 'react';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import connect from 'react-redux/es/connect/connect';
-import { mapStateToProps } from '../../reducers/index';
+import React, {Component} from 'react';
+import {mapStateToProps} from '../../reducers';
 import SearchField from '../SearchField/SearchField';
 import SearchBarDispatch from './SearchBarDispatch';
 import SearchByButton from '../SearchByButton/SearchByButton';
 import SearchOkButton from '../SearchOkButton/SearchOkButton';
 import SearchFoundCount from '../SearchFoundCount/SearchFoundCount';
 import SortBy from '../SortBy/SortBy';
-import _ from 'lodash';
-import styled from 'styled-components';
-import { Row } from '../../rebass-grid-custom';
+import {
+	BSearchBar,
+	BSearchBarSearch,
+	BSearchBarSearchBy,
+	BSearchBarSearchByBoxBtn,
+	BSearchBarSearchByBoxBtnRun,
+	BSearchBarSearchByTitle,
+	BSearchBarSearchField,
+	BSearchBarSearchTitle,
+	BSearchBarStatus,
+	BSearchBarStatusCount,
+	BSearchBarStatusSort,
+	BSearchBarStatusSortBtn,
+	BSearchBarStatusSortTitle
+} from "./SearchBarStyled";
+import {SearchBarProps} from "./SearchBarInterfaces";
+import {connect} from "react-redux";
 
-
-const BSearchBar = styled.div``;
-
-const BSearchBarSearch = styled.div``;
-const BSearchBarSearchTitle = styled.div`
-	color:#fff;
-	font-weight: bold;
-	margin-bottom: 10px;
-	text-transform: uppercase;
-	font-size: 1.5rem;
-`;
-const BSearchBarSearchField = styled.div``;
-
-const BSearchBarSearchBy = styled.div`
-	display: flex;
-	align-items: center;
-`;
-const BSearchBarSearchByTitle = styled.div`
-	color:#fff;
-	font-weight: bold;
-	text-transform: uppercase;
-`;
-const BSearchBarSearchByBoxBtn = styled.div``;
-const BSearchBarSearchByBoxBtnRun = styled.div`
-	flex-grow: 1;
-	display: flex;
-	justify-content: flex-end;
-`;
-
-const BSearchBarStatus = styled.div`
-	display: flex;
-	align-items: center;
-`;
-const BSearchBarStatusCount = styled.div`
-
-`;
-const BSearchBarStatusSort = styled.div`
-	align-items: center;
-	display: flex;
-	justify-content: flex-end;
-	flex-grow: 1;
-`;
-const BSearchBarStatusSortTitle = styled.div``;
-const BSearchBarStatusSortBtn = styled.div``;
-
-class SearchBar extends Component {
+class SearchBar extends Component <SearchBarProps> {
 
 	render() {
 		let showStatusBar = this.props.store.ReducerFilms.searchResults.length > 0;
@@ -95,7 +62,7 @@ class SearchBar extends Component {
 
 					<BSearchBarSearchByBoxBtnRun>
 						<SearchOkButton
-							searchFilm={this.props.onSearchFilm}
+							onSearchFilm={this.props.onSearchFilm}
 						/>
 					</BSearchBarSearchByBoxBtnRun>
 				</BSearchBarSearchBy>
@@ -136,3 +103,4 @@ class SearchBar extends Component {
 }
 
 export default connect(mapStateToProps, SearchBarDispatch)(SearchBar);
+
