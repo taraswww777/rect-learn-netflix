@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
-import connect from 'react-redux/es/connect/connect';
-
-import { mapStateToProps } from '../../reducers/index';
+import {mapStateToProps} from '../../reducers';
 import SearchDispatch from './SearchDispatch';
 import SearchResultsEmpty from '../SearchResultsEmpty/SearchResultsEmpty';
 import FilmList from '../FilmList/FilmList';
-import { PreLoader } from '../../rebass-grid-custom';
+import {PreLoader} from '../../rebass-grid-custom';
+import {connect} from "react-redux";
 
 
 class Search extends Component {
-	componentName = 'search';
 
 	render() {
 		const searchResults = _.get(this.props, 'store.ReducerFilms.searchResults');
