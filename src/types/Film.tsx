@@ -6,6 +6,7 @@ export interface FilmSize {
 export interface Film {
 	id: string;
 	title: string;
+	author: string;
 	rating: number;
 	year: number;
 	index: number;

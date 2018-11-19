@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
-import styled from 'styled-components';
-import { Ceil, PreLoader, Row } from '../../rebass-grid-custom';
-
-const BFilmDetailInfo = styled(Row)``;
-
-const BFilmDetailInfo_header = styled(Ceil)``;
-const BFilmDetailInfo_title = styled.h1``;
-
-const BFilmDetailInfo_leftBoxImg = styled(Ceil)``;
-const BFilmDetailInfo_leftImg = styled.img`
-	max-width: 100%;
-`;
-
-const FilmDetailInfo_rating = styled.span` padding: 5px;`;
-const BFilmDetailInfo_author = styled.span`padding: 5px;`;
-const BFilmDetailInfo_Year = styled.span` padding: 5px;`;
-const BFilmDetailInfo_Size = styled.span` padding: 5px;`;
-const BFilmDetailInfo_SizeValue = styled.span` `;
-const BFilmDetailInfo_SizeUnit = styled.span` `;
-const BFilmDetailInfo_Genre = styled.span` padding: 5px;`;
-
-const BFilmDetailInfo_detailDescription = styled(Ceil)``;
+import {PreLoader} from '../../rebass-grid-custom';
+import {
+	BFilmDetailInfo,
+	BFilmDetailInfo_author, BFilmDetailInfo_detailDescription,
+	BFilmDetailInfo_Genre,
+	BFilmDetailInfo_header,
+	BFilmDetailInfo_leftBoxImg,
+	BFilmDetailInfo_leftImg,
+	BFilmDetailInfo_Size,
+	BFilmDetailInfo_SizeUnit,
+	BFilmDetailInfo_SizeValue,
+	BFilmDetailInfo_title,
+	BFilmDetailInfo_Year,
+	FilmDetailInfo_rating
+} from "./FilmDetailInfoStyled";
+import {FilmDetailInfoProps} from "./FilmDetailInfoInterface";
 
 
-class FilmDetailInfo extends Component {
+class FilmDetailInfo extends Component<FilmDetailInfoProps> {
 
 	render() {
 		const filmDetail = _.get(this.props, 'filmDetail');
