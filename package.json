@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@rebass/grid": "^6.0.0-4",
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.9",
+    "@types/react": "^16.7.6",
+    "@types/react-dom": "^16.0.9",
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.86.0",
@@ -18,10 +22,15 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.1.1"
+    "styled-components": "^4.1.1",
+    "typescript": "^3.1.6",
+    "@types/lodash": "^4.14.118",
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/styled-components": "^4.1.0"
   },
   "scripts": {
-    "gitPushDev":"git push origin dev",
+    "gitPushDev": "git push origin dev",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
