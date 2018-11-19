@@ -26,6 +26,7 @@
     "typescript": "^3.1.6",
     "@types/lodash": "^4.14.118",
     "@types/react-redux": "^6.0.9",
+    "@types/react-router-redux": "^5.0.16",
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^4.1.0"
   },
