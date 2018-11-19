@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const settings = {
 	mainColor: 'red',
@@ -12,7 +12,11 @@ export const listButtonTypes = {
 	big: 'big',
 };
 
-export const Button = styled.button`
+export interface ButtonProps {
+	status: string | boolean
+}
+
+export const Button = styled.button<ButtonProps>`
 	background: #fff;
 	border-radius: 5px;
 	border: 2px solid ${settings.mainColor};
