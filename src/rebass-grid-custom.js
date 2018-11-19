@@ -52,10 +52,12 @@ export const PreLoader = styled.div`
 	color: #000;
 	background: url(${logo}) no-repeat center center;
 	transition: infiniti;
-	width: 100%;
+	width: 200px;
+	height: 200px;
 	min-width: 200px;
 	min-height: 200px;
 	max-width: 100%;
+	margin: 0 auto;
 	animation: main-rotate 5s infinite linear;
 	
 	@keyframes main-rotate {
