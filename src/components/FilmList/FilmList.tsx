@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 import FilmItem from '../FilmItem/FilmItem';
-import { Ceil, Row } from '../../rebass-grid-custom';
+import {Ceil, Row} from '../../rebass-grid-custom';
+import {FilmListProps} from "./FilmListInterfaces";
 
 const BFilmList = styled.div``;
 const BFilmList_Empty = styled.div``;
 const BFilmList_List = styled(Row)``;
 const BFilmList_ListItem = styled(Ceil)``;
 
-class FilmList extends Component {
+class FilmList extends Component <FilmListProps> {
 
 
 	render() {
 		const filmList = _.get(this.props, 'filmList');
+
 		return (
 			<BFilmList>
 				{!filmList ?
