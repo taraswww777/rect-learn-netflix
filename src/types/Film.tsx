@@ -3,7 +3,7 @@ export interface FilmSize {
 	unit: string;
 }
 
-export interface TypeFilm {
+export interface Film {
 	id: string;
 	title: string;
 	rating: number;
