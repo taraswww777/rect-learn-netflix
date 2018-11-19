@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
-import { isKeyEnter, settings } from '../../rebass-grid-custom';
-import connect from 'react-redux/es/connect/connect';
-import { mapStateToProps } from '../../reducers';
+import {isKeyEnter, settings} from '../../rebass-grid-custom';
+import {connect} from 'react-redux';
+import {mapStateToProps} from '../../reducers';
+import {SearchFieldProps} from "./SearchFieldInterfaces";
 
 const BSearchField = styled.input`
 	width: calc(100% - 30px);
@@ -15,7 +16,7 @@ const BSearchField = styled.input`
 	}
 `;
 
-class SearchField extends Component {
+class SearchField extends Component<SearchFieldProps> {
 
 	render() {
 		return (
