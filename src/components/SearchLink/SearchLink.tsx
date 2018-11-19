@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
 import styled from 'styled-components';
+import {LINK} from "../../components-styled/Button";
 
-const BSearchLink = styled(Link)`
-
-`;
+const BSearchLink = styled(LINK)``;
 
 class SearchLink extends Component {
-	componentName = 'search-link';
 
 	render() {
 		return (
