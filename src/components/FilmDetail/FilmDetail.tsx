@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import _ from 'lodash';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from "react-redux";
 
-import { mapStateToProps } from '../../reducers/index';
+import {mapStateToProps} from '../../reducers';
 import FilmDetailDispatch from './FilmDetailDispatch';
 import FilmList from '../FilmList/FilmList';
 import FilmDetailInfo from '../FilmDetailInfo/FilmDetailInfo';
-import { Ceil, Container, PreLoader, Row } from '../../rebass-grid-custom';
+import {Ceil, Container, PreLoader, Row} from '../../rebass-grid-custom';
 import styled from 'styled-components';
+import {FilmDetailProps} from "./FilmDetailInterfaces";
 
 const BFilmDetail = styled.div``;
-const BFilmDetail_fail = styled.div``;
+const BFilmDetailFail = styled.div``;
 
-const BFilmDetail_similar = styled(Ceil)``;
-const BFilmDetail_similarTitle = styled.h2``;
-const BFilmDetail_similarList = styled.div``;
+const BFilmDetailSimilar = styled(Ceil)``;
+const BFilmDetailSimilarTitle = styled.h2``;
+const BFilmDetailSimilarList = styled.div``;
 
 
-class FilmDetail extends Component {
+class FilmDetail extends Component<FilmDetailProps> {
 
 	componentWillMount() {
 		this.props.loadDetailById(this.props.match.params.id);
@@ -50,7 +51,7 @@ class FilmDetail extends Component {
 							{LOAD_FILM_DETAIL_STATUS === false && <PreLoader/>}
 							{LOAD_FILM_DETAIL_STATUS === true && filmDetail && <FilmDetailInfo filmDetail={filmDetail}/>}
 							{LOAD_FILM_DETAIL_STATUS === true && !filmDetail &&
-							<BFilmDetail_fail>fail load film detail</BFilmDetail_fail>}
+							<BFilmDetailFail>fail load film detail</BFilmDetailFail>}
 						</Ceil>
 
 						{LOAD_FILM_SIMILAR_STATUS === false &&
@@ -60,12 +61,12 @@ class FilmDetail extends Component {
 						}
 
 						{LOAD_FILM_SIMILAR_STATUS === true && similarFilms &&
-						<BFilmDetail_similar width={[1]}>
-							<BFilmDetail_similarTitle>similar films</BFilmDetail_similarTitle>
-							<BFilmDetail_similarList>
+						<BFilmDetailSimilar width={[1]}>
+							<BFilmDetailSimilarTitle>similar films</BFilmDetailSimilarTitle>
+							<BFilmDetailSimilarList>
 								<FilmList filmList={similarFilms}/>
-							</BFilmDetail_similarList>
-						</BFilmDetail_similar>
+							</BFilmDetailSimilarList>
+						</BFilmDetailSimilar>
 						}
 					</Row>
 				</Container>
