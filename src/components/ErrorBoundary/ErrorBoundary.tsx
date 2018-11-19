@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 
-interface ErrorBoundaryProps {
-	hasError: boolean;
-	error: TypeError | null;
-	info: Object | null;
-}
-
 const BErrorBoundary = styled.div``;
 
-class ErrorBoundary extends Component <ErrorBoundaryProps> {
+class ErrorBoundary extends Component {
 
 
 	state = {
