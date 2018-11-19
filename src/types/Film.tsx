@@ -11,7 +11,7 @@ export interface Film {
 	year: number;
 	index: number;
 	guid: number;
-	genre: number;
+	genre: String;
 	isActive: boolean;
 	previewPicture: string;
 	detailPicture: string;
