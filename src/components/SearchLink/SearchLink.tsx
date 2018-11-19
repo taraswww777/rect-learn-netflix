@@ -6,7 +6,7 @@ const BSearchLink = styled(LINK)``;
 
 class SearchLink extends Component {
 
-	render() {
+	public render() {
 		return (
 			<BSearchLink to={'/'}>search</BSearchLink>
 		);

@@ -1,9 +1,9 @@
-export interface FilmSize {
+export interface InterfaceFilmSize {
 	value: number;
 	unit: string;
 }
 
-export interface Film {
+export interface InterfaceFilm {
 	id: string;
 	title: string;
 	author: string;
@@ -11,14 +11,14 @@ export interface Film {
 	year: number;
 	index: number;
 	guid: number;
-	genre: String;
+	genre: string;
 	isActive: boolean;
 	previewPicture: string;
 	detailPicture: string;
 	date: string;
-	tags: [];
+	tags: string[];
 	range: number;
-	size: FilmSize;
+	size: InterfaceFilmSize;
 	previewText: string;
 	detailText: string
 }

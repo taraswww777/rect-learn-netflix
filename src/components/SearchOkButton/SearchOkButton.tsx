@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {Button, listStatus, listTypes} from '../../components-styled/Button';
-import {SearchOkButtonProps} from "./SearchOkButtonInterfces";
+
+
+export interface SearchOkButtonProps {
+	onSearchFilm?: Function
+}
 
 class SearchOkButton extends Component <SearchOkButtonProps> {
-	render() {
+	public render() {
 
 		return (
 			<Button

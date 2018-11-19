@@ -8,7 +8,7 @@ const BSearchResultsEmpty = styled.div`
 
 class SearchResultsEmpty extends Component {
 
-	render() {
+	public render() {
 		return (
 			<BSearchResultsEmpty>No films found</BSearchResultsEmpty>
 		);

@@ -1,9 +1,9 @@
 import {
-	SET_SEARCH_SORT_BY,
-	SET_SEARCH_QUERY,
 	DO_SEARCH_QUERY,
+	FINISH_SEARCH_QUERY,
 	SET_SEARCH_FILTER_BY,
-	START_SEARCH_QUERY, FINISH_SEARCH_QUERY,
+	SET_SEARCH_QUERY,
+	SET_SEARCH_SORT_BY, START_SEARCH_QUERY,
 } from '../../reducers/ReducerFilms';
 
 export default function SearchBarDispatch(dispatch: Function) {
@@ -30,7 +30,7 @@ export default function SearchBarDispatch(dispatch: Function) {
 				return (dispatch: Function) => setTimeout(() => {
 					dispatch({type: SET_SEARCH_FILTER_BY, payload: searchBy});
 					dispatch({type: FINISH_SEARCH_QUERY});
-				}, 5000);
+				}, 1000);
 			};
 
 			dispatch(async());
@@ -41,7 +41,7 @@ export default function SearchBarDispatch(dispatch: Function) {
 				return (dispatch: Function) => setTimeout(() => {
 					dispatch({type: SET_SEARCH_SORT_BY, payload: sortBy});
 					dispatch({type: FINISH_SEARCH_QUERY});
-				}, 5000);
+				}, 1000);
 			};
 
 			dispatch(async());

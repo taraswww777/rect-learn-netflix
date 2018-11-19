@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {mapStateToProps} from '../../reducers';
-import SearchField from '../SearchField/SearchField';
-import SearchBarDispatch from './SearchBarDispatch';
+import {connect} from "react-redux";
+import mapStateToProps from '../../reducers/mapStateToProps';
 import SearchByButton from '../SearchByButton/SearchByButton';
-import SearchOkButton from '../SearchOkButton/SearchOkButton';
+import SearchField from '../SearchField/SearchField';
 import SearchFoundCount from '../SearchFoundCount/SearchFoundCount';
+import SearchOkButton from '../SearchOkButton/SearchOkButton';
 import SortBy from '../SortBy/SortBy';
+import SearchBarDispatch from './SearchBarDispatch';
 import {
 	BSearchBar,
 	BSearchBarSearch,
@@ -21,13 +22,21 @@ import {
 	BSearchBarStatusSortBtn,
 	BSearchBarStatusSortTitle
 } from "./SearchBarStyled";
-import {SearchBarProps} from "./SearchBarInterfaces";
-import {connect} from "react-redux";
 
-class SearchBar extends Component <SearchBarProps> {
+export interface InterfaceSearchBarProps {
+	store?: any;
+	onSearchFilm?: Function | any | undefined;
+	onSetSearchQuery?: Function | any | undefined;
+	onSetSearchBy?: Function | any | undefined;
+	onSetSortBy?: Function | any | undefined;
+}
 
-	render() {
-		let showStatusBar = this.props.store.ReducerFilms.searchResults.length > 0;
+
+class SearchBar extends Component <InterfaceSearchBarProps> {
+
+	public render() {
+		const showStatusBar = this.props.store.ReducerFilms.searchResults.length > 0;
+
 		return (
 			<BSearchBar>
 

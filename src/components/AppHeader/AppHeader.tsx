@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
-import SearchLink from '../SearchLink/SearchLink';
-import {RouteComponentProps, withRouter} from 'react-router';
 import _ from 'lodash';
-import {AppHeaderProps} from "./AppHeaderInterfaces";
+import React, {Component} from 'react';
+import {RouteComponentProps, withRouter} from 'react-router';
+import {InterfaceMatch} from "../../types/InterfaceMatch";
+import SearchLink from '../SearchLink/SearchLink';
 import {BAppHeader, BAppHeaderSearchLink, BAppHeaderTitle} from "./AppHeaderStyled";
 
-class AppHeader extends Component<RouteComponentProps, AppHeaderProps> {
 
-	render() {
-		let location = _.get(this.props, 'location.pathname');
+class AppHeader extends Component<RouteComponentProps, InterfaceMatch> {
+
+	public render() {
+		const location = _.get(this.props, 'location.pathname');
 
 		return (
 			<BAppHeader>

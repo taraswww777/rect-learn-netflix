@@ -5,17 +5,16 @@ const BErrorBoundary = styled.div``;
 
 class ErrorBoundary extends Component {
 
-
-	state = {
-		hasError: false,
-		errorMessage: null
+	public state = {
+		errorMessage: null,
+		hasError: false
 	};
 
-	componentDidCatch(error: TypeError, info: Object) {
+	public componentDidCatch(error: TypeError, info: object) {
 		this.setState({hasError: true, errorMessage: error.message});
 	}
 
-	render() {
+	public render() {
 		if (this.state.hasError) {
 			return (
 				<BErrorBoundary>

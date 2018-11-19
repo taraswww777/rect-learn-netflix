@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {Button, listStatus} from '../../components-styled/Button';
-import {SortByProps} from "./SortByInterfaces";
 
-class SortBy extends Component <SortByProps> {
-	render() {
-		let status = this.props.sortByCurrent === this.props.sortByCode && listStatus.active;
+export interface InterfaceSortByProps {
+	sortByCurrent: string;
+	sortByTitle: string;
+	sortByCode: string;
+	onSetSortBy: Function;
+}
+
+
+class SortBy extends Component <InterfaceSortByProps> {
+	public render() {
+		const status = this.props.sortByCurrent === this.props.sortByCode && listStatus.active;
 
 		return (
 			<Button

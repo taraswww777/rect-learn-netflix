@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components';
-import {Link, LinkProps} from "react-router-dom";
 import * as React from "react";
+import {Link, LinkProps} from "react-router-dom";
+import styled, {css} from 'styled-components';
 
 const settings = {
 	mainColor: 'red',
@@ -14,11 +14,11 @@ export const listTypes = {
 	big: 'big',
 };
 
-export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface InterfaceButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	status: string | boolean
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button<InterfaceButtonProps>`
 	background: #fff;
 	border-radius: 5px;
 	border: 2px solid ${settings.mainColor};
@@ -47,11 +47,11 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 
-export interface LINKProps extends LinkProps {
+export interface InterfaceLINKProps extends LinkProps {
 	status?: string | boolean;
 }
 
-export const LINK = styled(Link)<LINKProps>`
+export const LINK = styled(Link)<InterfaceLINKProps>`
 	background: #fff;
 	border-radius: 5px;
 	border: 2px solid ${settings.mainColor};

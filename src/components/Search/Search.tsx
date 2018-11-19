@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
 import _ from 'lodash';
-import {mapStateToProps} from '../../reducers';
-import SearchDispatch from './SearchDispatch';
-import SearchResultsEmpty from '../SearchResultsEmpty/SearchResultsEmpty';
-import FilmList from '../FilmList/FilmList';
-import {PreLoader} from '../../rebass-grid-custom';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {PreLoader} from '../../rebass-grid-custom';
+import mapStateToProps from "../../reducers/mapStateToProps";
+import FilmList from '../FilmList/FilmList';
+import SearchResultsEmpty from '../SearchResultsEmpty/SearchResultsEmpty';
+import SearchDispatch from './SearchDispatch';
 
 
 class Search extends Component {

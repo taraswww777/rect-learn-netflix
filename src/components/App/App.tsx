@@ -1,19 +1,19 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
-import SearchBar from '../SearchBar/SearchBar';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import {RouteComponentProps, withRouter} from 'react-router';
 import {Ceil, Container, Row} from '../../rebass-grid-custom';
-import AppHeader from '../AppHeader/AppHeader';
+import {InterfaceMatch} from "../../types/InterfaceMatch";
 import AppFooter from '../AppFooter/AppFooter';
-import _ from 'lodash';
-import {AppProps} from "./AppInterfaces";
+import AppHeader from '../AppHeader/AppHeader';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import SearchBar from '../SearchBar/SearchBar';
 import {BApp, BAppFooter, BAppHeader, BAppHeaderContent, BAppHeaderSearchBar} from "./AppStyled";
 
 
-class App extends Component <RouteComponentProps, AppProps> {
+class App extends Component <RouteComponentProps, InterfaceMatch> {
 
-	render() {
-		let location = _.get(this.props, 'location.pathname');
+	public render() {
+		const location = _.get(this.props, 'location.pathname');
 		return (
 			<BApp>
 				<BAppHeader>

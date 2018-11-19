@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import {SearchFoundCountProps} from "./SearchFoundCountInterfaces";
 
 const BSearchFoundCount = styled.div``;
 
-class SearchFoundCount extends Component<SearchFoundCountProps> {
+export interface InterfaceSearchFoundCountProps {
+	countResults: number
+}
 
-	render() {
+class SearchFoundCount extends Component<InterfaceSearchFoundCountProps> {
+
+	public render() {
 		return (
 			<BSearchFoundCount>{this.props.countResults} movies found</BSearchFoundCount>
 		);

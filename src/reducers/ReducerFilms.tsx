@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import {Film} from "../types/Film";
-import {ReducerAction} from "../types/ReducerAction";
+import {InterfaceAction} from "../types/InterfaceAction";
+import {InterfaceFilm} from "../types/InterfaceFilm";
 
 export const LOAD_FILM_LIST = 'LOAD_FILM_LIST';
 export const LOAD_FILM_DETAIL_BY_ID = 'LOAD_FILM_DETAIL_BY_ID';
@@ -21,22 +21,31 @@ export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const SET_FILM_CURRENT_ID = 'SET_FILM_CURRENT_ID';
 
 // @ts-ignore
-const filmDetail: Film = {};
+const filmDetailDemo: InterfaceFilm = {};
 
-const stateDefault = {
-	listFilms: [],
-	filmDetail: filmDetail,
+interface InterfaceStateDefault {
+	listFilms: InterfaceFilm[],
+	filmDetail: InterfaceFilm | object | any,
 	searchQuery: null,
+	searchBy: string,
+	sortBy: string,
+	searchResults: InterfaceFilm[],
+}
+
+const stateDefault: InterfaceStateDefault = {
+	filmDetail: filmDetailDemo,
+	listFilms: [],
 	searchBy: 'title',
-	sortBy: 'date',
+	searchQuery: null,
 	searchResults: [],
+	sortBy: 'date',
 };
 
-function compareFilmRating(filmA: Film, filmB: Film): number {
+function compareFilmRating(filmA: InterfaceFilm, filmB: InterfaceFilm): number {
 	return filmA.rating - filmB.rating;
 }
 
-function compareFilmTitle(filmA: Film, filmB: Film): number {
+function compareFilmTitle(filmA: InterfaceFilm, filmB: InterfaceFilm): number {
 	if (filmA.title < filmB.title) {
 		return -1;
 	}
@@ -46,7 +55,7 @@ function compareFilmTitle(filmA: Film, filmB: Film): number {
 	return 0;
 }
 
-function compareFilmDate(filmA: Film, filmB: Film): number {
+function compareFilmDate(filmA: InterfaceFilm, filmB: InterfaceFilm): number {
 	return filmA.year - filmB.year;
 }
 
@@ -54,36 +63,36 @@ function loadFilms() {
 	return require('../demoListFilms');
 }
 
-function filterByTitle(listFilms = [], searchQuery: string): Array<Film> {
-	const resultListSearch: Array<Film> = [];
+function filterByTitle(listFilms = [], searchQuery: string): InterfaceFilm[] {
+	const resultListSearch: InterfaceFilm[] = [];
 
 	listFilms
-		.filter((film: Film) => film.title.toLowerCase().indexOf(searchQuery) > -1)
+		.filter((film: InterfaceFilm) => film.title.toLowerCase().indexOf(searchQuery) > -1)
 		.map(film => resultListSearch.push(film));
 
 	return resultListSearch;
 }
 
-function filterByGenre(listFilms = [], searchQuery: string): Array<Film> {
-	const resultListSearch: Array<Film> = [];
+function filterByGenre(listFilms = [], searchQuery: string): InterfaceFilm[] {
+	const resultListSearch: InterfaceFilm[] = [];
 	listFilms
-		.filter((film: Film) => film.genre.toLowerCase().indexOf(searchQuery) > -1)
+		.filter((film: InterfaceFilm) => film.genre.toLowerCase().indexOf(searchQuery) > -1)
 		.map(film => resultListSearch.push(film));
 
 	return resultListSearch;
 }
 
-function filterById(listFilms = [], filmId: string): Film | any {
+function filterById(listFilms = [], filmId: string): InterfaceFilm | any {
 	let resultListSearch = {};
 	listFilms
-		.filter((film: Film) => film.id.toLowerCase()
+		.filter((film: InterfaceFilm) => film.id.toLowerCase()
 			.indexOf(filmId) > -1)
 		.map(film => resultListSearch = film);
 
 	return resultListSearch;
 }
 
-function sortSearchResults(listFilms: Array<Film>, sortBy = 'date'): Array<Film> {
+function sortSearchResults(listFilms: InterfaceFilm[], sortBy = 'date'): InterfaceFilm[] {
 	if (!listFilms) {
 		return listFilms;
 	}
@@ -107,7 +116,7 @@ function sortSearchResults(listFilms: Array<Film>, sortBy = 'date'): Array<Film>
 
 function searchFilm(state: any) {
 	const filmList = loadFilms();
-	let searchResults: Array<Film> = [];
+	let searchResults: InterfaceFilm[] = [];
 
 	if (!state.searchQuery) {
 		return {
@@ -132,7 +141,7 @@ function searchFilm(state: any) {
 	};
 }
 
-function ReducerFilms(state = stateDefault, action: ReducerAction) {
+function ReducerFilms(state = stateDefault, action: InterfaceAction) {
 	switch (action.type) {
 		// LOAD
 		case LOAD_FILM_LIST:
@@ -147,7 +156,7 @@ function ReducerFilms(state = stateDefault, action: ReducerAction) {
 				filmDetail: filterById(loadFilms(), action.payload),
 			};
 		case LOAD_FILM_SIMILAR:
-			let similarFilms: Array<Film> = [];
+			let similarFilms: InterfaceFilm[] = [];
 			const genre = _.get(state, 'filmDetail.genre');
 			if (genre) {
 				similarFilms = filterByGenre(loadFilms(), state.filmDetail.genre.toLowerCase());

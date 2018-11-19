@@ -1,8 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
 import { Box, Flex } from '@rebass/grid';
-import styled from 'styled-components';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import logo from './logo.svg';
 
 export const settings = {
 	colors: {

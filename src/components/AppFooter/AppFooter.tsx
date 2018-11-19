@@ -3,7 +3,7 @@ import {BAppFooter, BAppFooterTitle} from "./AppFooterStyled";
 
 class AppFooter extends Component {
 
-	render() {
+	public render() {
 		return (
 			<BAppFooter>
 				<BAppFooterTitle>netflix</BAppFooterTitle>

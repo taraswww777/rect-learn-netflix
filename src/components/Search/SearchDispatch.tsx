@@ -1,5 +1,3 @@
-export default function SearchDispatch(dispatch:Function) {
-  return {
-
-  };
+export default function SearchDispatch(dispatch: Function) {
+	return {};
 }

@@ -1,5 +1,5 @@
-import {Film} from "../../types/Film";
+import {InterfaceFilm} from "../../types/InterfaceFilm";
 
 export interface FilmItemProps {
-	film: Film
+	film: InterfaceFilm
 }

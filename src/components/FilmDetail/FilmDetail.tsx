@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
 import _ from 'lodash';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
-
-import {mapStateToProps} from '../../reducers';
-import FilmDetailDispatch from './FilmDetailDispatch';
-import FilmList from '../FilmList/FilmList';
-import FilmDetailInfo from '../FilmDetailInfo/FilmDetailInfo';
-import {Ceil, Container, PreLoader, Row} from '../../rebass-grid-custom';
 import styled from 'styled-components';
-import {FilmDetailProps} from "./FilmDetailInterfaces";
+import {Ceil, Container, PreLoader, Row} from '../../rebass-grid-custom';
+import mapStateToProps from "../../reducers/mapStateToProps";
+import {InterfaceMatch} from "../../types/InterfaceMatch";
+import FilmDetailInfo from '../FilmDetailInfo/FilmDetailInfo';
+import FilmList from '../FilmList/FilmList';
+import FilmDetailDispatch from './FilmDetailDispatch';
 
 const BFilmDetail = styled.div``;
 const BFilmDetailFail = styled.div``;
@@ -18,13 +17,22 @@ const BFilmDetailSimilarTitle = styled.h2``;
 const BFilmDetailSimilarList = styled.div``;
 
 
-class FilmDetail extends Component<FilmDetailProps> {
+export interface InterfaceFilmDetailProps extends InterfaceMatch {
+	loadDetailById: Function;
+	setCurrentFilmDetailById: Function;
+}
 
-	componentWillMount() {
-		this.props.loadDetailById(this.props.match.params.id);
+class FilmDetail extends Component<InterfaceFilmDetailProps> {
+
+	public componentWillMount() {
+		const id = _.get(this.props, 'match.params.id');
+
+		if (id) {
+			this.props.loadDetailById(id);
+		}
 	}
 
-	componentDidUpdate() {
+	public componentDidUpdate() {
 		// Вот тут не факт что правильно сделано
 		const lastFilmId = _.get(this.props, 'store.ReducerFilms.filmId');
 		const currentFilmId = _.get(this.props, 'match.params.id');
