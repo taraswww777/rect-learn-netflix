@@ -1,36 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import { withRouter } from 'react-router';
-import { Ceil, Container, Row } from '../../rebass-grid-custom';
+import {RouteComponentProps, withRouter} from 'react-router';
+import {Ceil, Container, Row} from '../../rebass-grid-custom';
 import AppHeader from '../AppHeader/AppHeader';
-import styled from 'styled-components';
 import AppFooter from '../AppFooter/AppFooter';
 import _ from 'lodash';
-
-const BApp = styled.div` 
-	width: 100%;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
-
-const BAppHeader = styled.div`
-	background:#ccc;
-	padding: 5px 0;
-	width: 100%;
-`;
-console.log('BAppHeader', BAppHeader);
-const BAppFooter = styled(BAppHeader)``;
-const BAppHeaderSearchBar = styled.div``;
-const BAppHeaderContent = styled.div`
-	width: 100%;
-	flex-grow: 1;
-`;
+import {AppProps} from "./AppInterfaces";
+import {BApp, BAppFooter, BAppHeader, BAppHeaderContent, BAppHeaderSearchBar} from "./AppStyled";
 
 
-class App extends Component {
+class App extends Component <RouteComponentProps, AppProps> {
 
 	render() {
 		let location = _.get(this.props, 'location.pathname');
