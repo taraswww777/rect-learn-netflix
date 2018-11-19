@@ -10,7 +10,7 @@ export const settings = {
 	}
 };
 
-export const Container = props =>
+export const Container = (props?:any) =>
 	<Box
 		{...props}
 		mx='auto'
@@ -20,7 +20,7 @@ export const Container = props =>
 		}}
 	/>;
 
-export const Row = props => (
+export const Row = (props?:any) => (
 	<Flex
 		{...props}
 		mx={-2}
@@ -30,7 +30,7 @@ export const Row = props => (
 	/>
 );
 
-export const Ceil = props => (
+export const Ceil = (props?:any) => (
 	<Box
 		{...props}
 		px={2}
@@ -71,6 +71,6 @@ export const PreLoader = styled.div`
 }
 `;
 
-export function isKeyEnter(event) {
+export function isKeyEnter(event:any) {
 	return event.key.toLowerCase() === 'enter';
 }
