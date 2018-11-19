@@ -12,5 +12,4 @@ class AppFooter extends Component {
 	}
 }
 
-// @ts-ignore
 export default AppFooter;
