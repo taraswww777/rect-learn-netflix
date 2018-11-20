@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Button, listStatus} from '../../components-styled/Button';
-import {SearchByButtonProps} from "./SearchByButtonInterfaces";
+import {InterfaceSearchByButtonProps} from "./SearchByButtonInterfaces";
 
-class SearchByButton extends Component  <SearchByButtonProps> {
+class SearchByButton extends Component  <InterfaceSearchByButtonProps> {
 	public render() {
-		let status = this.props.searchByCurrent === this.props.searchByCode && listStatus.active;
+		const status = this.props.searchByCurrent === this.props.searchByCode && listStatus.active;
 
 		return (
 			<Button

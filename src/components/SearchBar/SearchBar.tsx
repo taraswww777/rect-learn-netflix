@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import mapStateToProps from '../../reducers/mapStateToProps';
@@ -36,6 +37,9 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 
 	public render() {
 		const showStatusBar = this.props.store.ReducerFilms.searchResults.length > 0;
+		const searchQuery = _.get(this.props, 'store.ReducerFilms.searchQuery');
+		const searchBy = _.get(this.props, 'store.ReducerFilms.searchBy');
+		const sortBy = _.get(this.props, 'store.ReducerFilms.sortBy');
 
 		return (
 			<BSearchBar>
@@ -44,7 +48,7 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 					<BSearchBarSearchTitle>Find your movie</BSearchBarSearchTitle>
 					<BSearchBarSearchField>
 						<SearchField
-							onSearchFilm={this.props.onSearchFilm}
+							onSearchFilm={this.props.onSearchFilm(searchQuery, searchBy, sortBy)}
 							onSetSearchQuery={this.props.onSetSearchQuery}
 						/>
 					</BSearchBarSearchField>
@@ -57,7 +61,7 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 							searchByTitle={'title'}
 							searchByCode={'title'}
 							searchByCurrent={this.props.store.ReducerFilms.searchBy}
-							onSetSearchBy={this.props.onSetSearchBy}
+							onSetSearchBy={this.props.onSetSearchBy(searchQuery, sortBy)}
 						/>
 					</BSearchBarSearchByBoxBtn>
 					<BSearchBarSearchByBoxBtn>
@@ -65,7 +69,7 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 							searchByTitle={'genre'}
 							searchByCode={'genre'}
 							searchByCurrent={this.props.store.ReducerFilms.searchBy}
-							onSetSearchBy={this.props.onSetSearchBy}
+							onSetSearchBy={this.props.onSetSearchBy(searchQuery, sortBy)}
 						/>
 					</BSearchBarSearchByBoxBtn>
 
@@ -90,7 +94,7 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 								sortByTitle={'release date'}
 								sortByCode={'date'}
 								sortByCurrent={this.props.store.ReducerFilms.sortBy}
-								onSetSortBy={this.props.onSetSortBy}
+								onSetSortBy={this.props.onSetSortBy(searchQuery, searchBy)}
 							/>
 						</BSearchBarStatusSortBtn>
 						<BSearchBarStatusSortBtn>
@@ -98,7 +102,7 @@ class SearchBar extends Component <InterfaceSearchBarProps> {
 								sortByTitle={'rating'}
 								sortByCode={'rating'}
 								sortByCurrent={this.props.store.ReducerFilms.sortBy}
-								onSetSortBy={this.props.onSetSortBy}
+								onSetSortBy={this.props.onSetSortBy(searchQuery, searchBy)}
 							/>
 						</BSearchBarStatusSortBtn>
 

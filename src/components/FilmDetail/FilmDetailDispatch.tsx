@@ -14,9 +14,7 @@ export default function FilmDetailDispatch(dispatch: Function) {
 		},
 
 		loadDetailById: (FILM_ID: string): void => {
-			const url = `${BASE_URL}/api/film/${FILM_ID}`;
-			// console.log('url:', url);
-
+			const url = encodeURI(`${BASE_URL}/api/film/${FILM_ID}`);
 			dispatch({type: START_LOAD_FILM_DETAIL});
 
 			fetch(url)
@@ -50,25 +48,6 @@ export default function FilmDetailDispatch(dispatch: Function) {
 				.catch(reason => {
 					console.log('reason: ', reason);
 				});
-
-			// dispatch({type: START_LOAD_FILM_DETAIL});
-			// dispatch({type: LOAD_FILM_DETAIL_BY_ID, payload: {filmId: FILM_ID}});
-
-			// const async = () => {
-			// 	dispatch({type: START_LOAD_FILM_SIMILAR});
-			// 	return (dispatch: Function) => setTimeout(() => {
-			// 		dispatch({type: LOAD_FILM_DETAIL_BY_ID, payload: FILM_ID});
-			// 		dispatch({type: SET_FILM_CURRENT_ID, payload: FILM_ID});
-			// 		dispatch({type: FINISH_LOAD_FILM_DETAIL});
-			// 		const asyncSimilar = () => (dispatch: Function) => setTimeout(() => {
-			// 			dispatch({type: LOAD_FILM_SIMILAR});
-			// 			dispatch({type: FINISH_LOAD_FILM_SIMILAR});
-			// 		}, 500);
-			//
-			// 		dispatch(asyncSimilar());
-			// 	}, 1000);
-			// };
-			// dispatch(async());
 		},
 	};
 }

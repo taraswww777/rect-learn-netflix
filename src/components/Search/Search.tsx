@@ -10,7 +10,7 @@ import SearchDispatch from './SearchDispatch';
 
 class Search extends Component {
 
-	render() {
+	public render() {
 		const searchResults = _.get(this.props, 'store.ReducerFilms.searchResults');
 		const SEARCH_QUERY_STATUS = _.get(this.props, 'store.ReducerFilms.SEARCH_QUERY_STATUS');
 

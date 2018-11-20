@@ -1,4 +1,4 @@
-export interface SearchByButtonProps {
+export interface InterfaceSearchByButtonProps {
 	searchByCurrent: string;
 	searchByCode: string;
 	searchByTitle: string;
