@@ -46,7 +46,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint -c tslint.json 'src/**/*.tsx"
+    "lint": "tslint -c tslint.json 'src/**/*.tsx",
+    "server-prod": "npm run build && node server"
   },
   "eslintConfig": {
     "extends": "react-app"

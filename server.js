@@ -139,8 +139,6 @@ app.get('/api/film-genre/:genre', (req, response) => {
 });
 
 app.get('/api/search/:searchQuery?/:searchBy?/:sortBy', (req, response) => {
-	console.log('search req.params: ', req.params);
-
 	let searchQuery = req.params.searchQuery;
 	let searchBy = req.params.searchBy || 'title';
 	let sortBy = req.params.sortBy || 'date';
@@ -158,6 +156,6 @@ app.get('/*', (req, response) => {
 
 
 app.listen(PORT, () => {
-	console.log('server run PORT:', PORT);
+	console.log('server run PORT:', PORT, ' host: http://localhost:' + PORT);
 });
 
