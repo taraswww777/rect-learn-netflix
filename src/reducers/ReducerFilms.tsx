@@ -1,10 +1,10 @@
-import _ from 'lodash';
 import {InterfaceAction} from "../types/InterfaceAction";
 import {InterfaceFilm} from "../types/InterfaceFilm";
+// import FilmItem from "../components/FilmItem/FilmItem";
 
 export const LOAD_FILM_LIST = 'LOAD_FILM_LIST';
-export const LOAD_FILM_DETAIL_BY_ID = 'LOAD_FILM_DETAIL_BY_ID';
-export const LOAD_FILM_SIMILAR = 'LOAD_FILM_SIMILAR';
+// export const LOAD_FILM_DETAIL_BY_ID = 'LOAD_FILM_DETAIL_BY_ID';
+// export const LOAD_FILM_SIMILAR = 'LOAD_FILM_SIMILAR';
 
 export const DO_SEARCH_QUERY = 'DO_SEARCH_QUERY';
 export const START_SEARCH_QUERY = 'START_DO_SEARCH_QUERY';
@@ -19,6 +19,10 @@ export const SET_SEARCH_FILTER_BY = 'SET_SEARCH_FILTER_BY';
 export const SET_SEARCH_SORT_BY = 'SET_SEARCH_SORT_BY';
 export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const SET_FILM_CURRENT_ID = 'SET_FILM_CURRENT_ID';
+export const SET_FILM_DETAIL = 'SET_FILM_DETAIL';
+export const SET_FILM_SIMILAR = 'SET_FILM_SIMILAR';
+
+export const BASE_URL = 'http://localhost:5000';
 
 // @ts-ignore
 const filmDetailDemo: InterfaceFilm = {};
@@ -82,15 +86,15 @@ function filterByGenre(listFilms = [], searchQuery: string): InterfaceFilm[] {
 	return resultListSearch;
 }
 
-function filterById(listFilms = [], filmId: string): InterfaceFilm | any {
-	let resultListSearch = {};
-	listFilms
-		.filter((film: InterfaceFilm) => film.id.toLowerCase()
-			.indexOf(filmId) > -1)
-		.map(film => resultListSearch = film);
-
-	return resultListSearch;
-}
+// function filterById(listFilms = [], filmId: string): InterfaceFilm | any {
+// 	let resultListSearch = {};
+// 	listFilms
+// 		.filter((film: InterfaceFilm) => film.id.toLowerCase()
+// 			.indexOf(filmId) > -1)
+// 		.map(film => resultListSearch = film);
+//
+// 	return resultListSearch;
+// }
 
 function sortSearchResults(listFilms: InterfaceFilm[], sortBy = 'date'): InterfaceFilm[] {
 	if (!listFilms) {
@@ -141,6 +145,27 @@ function searchFilm(state: any) {
 	};
 }
 
+
+export function loadFilmById(filmId: string) {
+	// TODO: Promise
+	return new Promise((resolve, reject) => {
+		const url = `${BASE_URL}/api/film/${filmId}`;
+		const client = new XMLHttpRequest();
+		client.open('GET', url, true);
+		client.onload = () => {
+			if (!client.responseText) {
+				reject({});
+			}
+			const res = JSON.parse(client.responseText);
+			if (!res) {
+				reject({})
+			}
+			resolve(res);
+		};
+		client.send(null);
+	});
+}
+
 function ReducerFilms(state = stateDefault, action: InterfaceAction) {
 	switch (action.type) {
 		// LOAD
@@ -150,21 +175,16 @@ function ReducerFilms(state = stateDefault, action: InterfaceAction) {
 				filmList: loadFilms(),
 			};
 
-		case LOAD_FILM_DETAIL_BY_ID:
+		case SET_FILM_DETAIL:
 			return {
 				...state,
-				filmDetail: filterById(loadFilms(), action.payload),
+				filmDetail: action.payload,
 			};
-		case LOAD_FILM_SIMILAR:
-			let similarFilms: InterfaceFilm[] = [];
-			const genre = _.get(state, 'filmDetail.genre');
-			if (genre) {
-				similarFilms = filterByGenre(loadFilms(), state.filmDetail.genre.toLowerCase());
-			}
 
+		case SET_FILM_SIMILAR:
 			return {
 				...state,
-				similarFilms,
+				similarFilms: action.payload,
 			};
 
 		// DO

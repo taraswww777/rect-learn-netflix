@@ -43,7 +43,7 @@ class FilmDetail extends Component<InterfaceFilmDetailProps> {
 		}
 	}
 
-	render() {
+	public render() {
 		const filmDetail = _.get(this.props, 'store.ReducerFilms.filmDetail');
 		const similarFilms = _.get(this.props, 'store.ReducerFilms.similarFilms');
 
@@ -62,7 +62,7 @@ class FilmDetail extends Component<InterfaceFilmDetailProps> {
 							<BFilmDetailFail>fail load film detail</BFilmDetailFail>}
 						</Ceil>
 
-						{LOAD_FILM_SIMILAR_STATUS === false &&
+						{LOAD_FILM_SIMILAR_STATUS !== true &&
 						<Ceil width={[1]}>
 							<PreLoader/>
 						</Ceil>

@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
 import _ from 'lodash';
+import React, {Component} from 'react';
 import {PreLoader} from '../../rebass-grid-custom';
+import {FilmDetailInfoProps} from "./FilmDetailInfoInterface";
 import {
 	BFilmDetailInfo,
 	BFilmDetailInfo_author, BFilmDetailInfo_detailDescription,
@@ -15,12 +16,11 @@ import {
 	BFilmDetailInfo_Year,
 	FilmDetailInfo_rating
 } from "./FilmDetailInfoStyled";
-import {FilmDetailInfoProps} from "./FilmDetailInfoInterface";
 
 
 class FilmDetailInfo extends Component<FilmDetailInfoProps> {
 
-	render() {
+	public render() {
 		const filmDetail = _.get(this.props, 'filmDetail');
 
 		if (!filmDetail) {
