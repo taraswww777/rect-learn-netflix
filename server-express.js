@@ -1,11 +1,12 @@
 const express = require('express');
 const path = require('path');
+const config = require('./server-config');
 const app = express();
-const PORT = process.env.PORT || 5000;
-const ROOT = path.join(__dirname + '/build');
 
-app.use(express.static(ROOT));
+// для отдачи статичных файлов
+app.use(express.static(config.ROOT));
 
+// для ответов на запросы с других ресурсов
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -127,7 +128,7 @@ function getListSearchFilm(searchQuery = '', searchBy = 'title', sortBy = 'date'
 
 app.get('/', (req, response) => {
 	response.writeHead(200, { 'Content-Type': 'text/html' });
-	response.sendFile(path.join(ROOT + '/index.html'));
+	response.sendFile(path.join(config.ROOT + '/index.html'));
 });
 
 app.get('/api/film/:id', (req, response) => {
@@ -155,7 +156,7 @@ app.get('/*', (req, response) => {
 });
 
 
-app.listen(PORT, () => {
-	console.log('server run PORT:', PORT, ' host: http://localhost:' + PORT);
+app.listen(config.PORT, () => {
+	console.log('server run PORT:', config.PORT, ' host: http://localhost:' + config.PORT);
 });
 
