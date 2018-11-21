@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Exception404 extends Component {
-
-	render() {
-		return (
-			<div>
-				<h1>404 page note found</h1>
-			</div>
-		);
-	}
-}
+const Exception404 = () => (
+	<div>
+		<h1>404 page note found</h1>
+	</div>
+);
 
 export default Exception404;

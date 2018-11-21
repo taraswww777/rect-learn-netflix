@@ -6,9 +6,9 @@ import {InterfaceFilm} from "../../types/InterfaceFilm";
 import FilmItem from '../FilmItem/FilmItem';
 
 const BFilmList = styled.div``;
-const BFilmList_Empty = styled.div``;
-const BFilmList_List = styled(Row)``;
-const BFilmList_ListItem = styled(Ceil)``;
+const BFilmListEmpty = styled.div``;
+const BFilmListItems = styled(Row)``;
+const BFilmListItem = styled(Ceil)``;
 
 export interface InterfaceFilmListProps {
 	filmList: InterfaceFilm[]
@@ -23,17 +23,17 @@ class FilmList extends Component <InterfaceFilmListProps> {
 		return (
 			<BFilmList>
 				{!filmList ?
-					<BFilmList_Empty>data about List film not found</BFilmList_Empty>
+					<BFilmListEmpty>data about List film not found</BFilmListEmpty>
 					:
-					<BFilmList_List>
-						{filmList.map(film => (
-							<BFilmList_ListItem
+					<BFilmListItems>
+						{filmList.map((film: InterfaceFilm) => (
+							<BFilmListItem
 								width={[1, 1 / 2, 1 / 4, 1 / 6]}
 								key={`film_${film.id}`}>
 								<FilmItem film={film}/>
-							</BFilmList_ListItem>
+							</BFilmListItem>
 						))}
-					</BFilmList_List>
+					</BFilmListItems>
 				}
 			</BFilmList>
 		);

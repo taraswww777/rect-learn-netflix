@@ -1,18 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Button, listStatus} from '../../components-styled/Button';
 import {InterfaceSearchByButtonProps} from "./SearchByButtonInterfaces";
 
-class SearchByButton extends Component  <InterfaceSearchByButtonProps> {
-	public render() {
-		const status = this.props.searchByCurrent === this.props.searchByCode && listStatus.active;
+const SearchByButton = (props: InterfaceSearchByButtonProps) => {
+	const status = props.searchByCurrent === props.searchByCode && listStatus.active;
 
-		return (
-			<Button
-				status={status}
-				onClick={this.props.onSetSearchBy(this.props.searchByCode)}
-			>{this.props.searchByTitle}</Button>
-		);
-	}
-}
+	return (
+		<Button
+			status={status}
+			onClick={props.onSetSearchBy(props.searchByCode)}
+		>{props.searchByTitle}</Button>
+	);
+};
 
 export default SearchByButton;

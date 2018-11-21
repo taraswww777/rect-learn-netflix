@@ -22,3 +22,7 @@ export interface InterfaceFilm {
 	previewText: string;
 	detailText: string
 }
+
+export interface InterfaceFilmProps {
+	film:InterfaceFilm
+}

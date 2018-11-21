@@ -7,8 +7,12 @@ import {
 } from '../../reducers/ReducerFilms';
 
 function searchFilm(dispatch: Function) {
-	return (searchQuery: string, searchBy: string = 'title', sortBy: string = 'date') => {
+	return (searchQuery: string = '', searchBy: string = 'title', sortBy: string = 'date') => {
 		return () => {
+			if (!searchQuery) {
+				return;
+			}
+
 			dispatch({type: START_SEARCH_QUERY});
 			const url = encodeURI(`${BASE_URL}/api/search/${searchQuery.toString().replace(/\//g, '\\')}/${searchBy}/${sortBy}`);
 
@@ -27,8 +31,12 @@ export default function SearchBarDispatch(dispatch: Function) {
 	return {
 		onSetSearchQuery: (searchQuery?: string) => {
 			if (searchQuery) {
-				dispatch({type: SET_SEARCH_QUERY, payload: searchQuery.toString().toLowerCase()});
+				searchQuery = searchQuery.toString().toLowerCase();
+			} else {
+				searchQuery = '';
 			}
+
+			dispatch({type: SET_SEARCH_QUERY, payload: searchQuery});
 		},
 
 		onSearchFilm: searchFilm(dispatch),
