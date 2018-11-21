@@ -3,13 +3,15 @@ import {
 	SET_FILM_CURRENT_ID, SET_FILM_DETAIL, SET_FILM_SIMILAR, START_LOAD_FILM_DETAIL, START_LOAD_FILM_SIMILAR,
 } from '../../reducers/ReducerFilms';
 import {InterfaceFilm} from "../../types/InterfaceFilm";
+import {TypeDispatch} from "../../types/TypeDispatch";
 
-// TODO: declarate (dispatch: Function)
+export type TypeLoadDetailById = (FILM_ID: string) => void;
+export type TypeSetCurrentFilmDetailById = (FILM_ID: string) => void;
 
-export default function FilmDetailDispatch(dispatch: Function) {
+export default function FilmDetailDispatch(dispatch: TypeDispatch) {
 
 	return {
-		setCurrentFilmDetailById: (FILM_ID: number) => {
+		setCurrentFilmDetailById: (FILM_ID: string) => {
 			dispatch({type: SET_FILM_CURRENT_ID, payload: FILM_ID});
 		},
 

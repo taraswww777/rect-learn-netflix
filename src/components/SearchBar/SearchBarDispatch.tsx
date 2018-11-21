@@ -5,8 +5,9 @@ import {
 	SET_SEARCH_QUERY, SET_SEARCH_RESULT,
 	SET_SEARCH_SORT_BY, START_SEARCH_QUERY,
 } from '../../reducers/ReducerFilms';
+import {TypeDispatch} from "../../types/TypeDispatch";
 
-function searchFilm(dispatch: Function) {
+function searchFilm(dispatch: TypeDispatch) {
 	return (searchQuery: string = '', searchBy: string = 'title', sortBy: string = 'date') => {
 		return () => {
 			if (!searchQuery) {
@@ -27,9 +28,9 @@ function searchFilm(dispatch: Function) {
 	}
 }
 
-export default function SearchBarDispatch(dispatch: Function) {
+export default function SearchBarDispatch(dispatch: TypeDispatch) {
 	return {
-		onSetSearchQuery: (searchQuery?: string) => {
+		onSetSearchQuery: (searchQuery?: string): void => {
 			if (searchQuery) {
 				searchQuery = searchQuery.toString().toLowerCase();
 			} else {

@@ -7,7 +7,7 @@ import mapStateToProps from "../../reducers/mapStateToProps";
 import {InterfaceMatch} from "../../types/InterfaceMatch";
 import FilmDetailInfo from '../FilmDetailInfo/FilmDetailInfo';
 import FilmList from '../FilmList/FilmList';
-import FilmDetailDispatch from './FilmDetailDispatch';
+import FilmDetailDispatch, {TypeLoadDetailById, TypeSetCurrentFilmDetailById} from './FilmDetailDispatch';
 
 const BFilmDetail = styled.div``;
 const BFilmDetailFail = styled.div``;
@@ -18,8 +18,8 @@ const BFilmDetailSimilarList = styled.div``;
 
 
 export interface InterfaceFilmDetailProps extends InterfaceMatch {
-	loadDetailById: Function;
-	setCurrentFilmDetailById: Function;
+	loadDetailById: TypeLoadDetailById;
+	setCurrentFilmDetailById: TypeSetCurrentFilmDetailById;
 }
 
 class FilmDetail extends Component<InterfaceFilmDetailProps> {
